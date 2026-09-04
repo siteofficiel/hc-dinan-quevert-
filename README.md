@@ -1,145 +1,71 @@
 # HC Dinan-Quévert — Site du club de rink hockey
 
-Site complet, moderne et responsive pour le **Hockey Club Dinan-Quévert** (rink hockey, Quévert / Dinan — Côtes-d'Armor, Bretagne).
+Site internet **statique** du **Hockey Club Dinan-Quévert** (rink hockey, Quévert / Dinan — Côtes-d'Armor, Bretagne).
 
-C'est une **proposition professionnelle** destinée à être présentée au club : identité « bleu & blanc », ton sportif et familial, expérience mobile soignée, et une administration volontairement très simple.
-
----
-
-## Lancer le site
-
-```bash
-npm install      # première fois uniquement
-node server.js   # ou : npm start
-```
-
-Le site est alors accessible sur `http://localhost:3000`.
-
-Au premier démarrage, une base de données de démonstration est créée automatiquement dans `data/db.json`.
-
-## Espace administrateur
-
-- URL : `/admin/login`
-- Identifiants par défaut : **admin** / **quevert2026**
-
-> ⚠️ **Changez le mot de passe dès la première connexion** (onglet *Réglages → Sécurité*).
+Il est conçu pour être publié **directement sur GitHub Pages** : **aucun serveur, aucune base de données, aucune installation** n'est nécessaire. Toutes les fonctionnalités sont conservées — actualités, résultats, photos, équipes, classement, espace adhérents, compositions du week-end — et restent **administrables sans compétence technique** grâce à une administration qui écrit directement dans le dépôt GitHub.
 
 ---
 
-## Pages publiques
+## Publier le site sur GitHub (résumé)
 
-| Page | Contenu |
+Le guide pas-à-pas complet (avec création du compte et de la clé) est dans **[GUIDE-GITHUB.md](GUIDE-GITHUB.md)**. En résumé :
+
+1. Créez un dépôt GitHub (privé recommandé) et déposez-y **tous les fichiers** de ce dossier (glisser-déposer possible).
+2. **Settings → Pages → Source : « Deploy from a branch » → branche `main` → dossier `/ (root)` → Save.**
+3. Le site est en ligne sur `https://votre-compte.github.io/hc-dinan-quevert/` (l'URL exacte s'affiche dans Settings → Pages).
+
+> Note : le site fonctionne aussi localement en ouvrant simplement `index.html`… sauf le chargement du contenu qui nécessite un petit serveur local (`python3 -m http.server`). Pour un usage réel, passez par GitHub Pages.
+
+## Administration
+
+- URL : `admin.html` (bouton « Espace administrateur » en bas de chaque page).
+- Connexion avec la **clé GitHub (token)**, le propriétaire et le nom du dépôt.
+- Chaque enregistrement (actualité, résultat, photo, composition…) est **immédiatement publié** dans le dépôt GitHub. Le site se met à jour en **≈ 1 minute** (temps de redéploiement de GitHub Pages).
+
+Sections de l'administration : **Tableau de bord · Actualités · Résultats & matchs · Photos · Compositions · Équipes · Classement N3 · Réglages**.
+
+## Contenu du site
+
+| Fichier | Rôle |
 | --- | --- |
-| Accueil | Hero photo, prochains matchs, dernier résultat, actualités, aperçu photos, focus N3, accès adhérents, partenaires |
-| Le club | Histoire, valeurs, présentation du rink hockey, catégories, infrastructures, infos pratiques |
-| Équipes | Toutes les catégories (N1 Élite, N3, U19 → U9, école de patinage) |
-| N3 | Page dédiée : stats, matchs, résultats, classement, effectif, galerie |
-| Actualités | Rubrique avec catégories (Vie du club, Événements, Jeunes, N3) + onglet Résultats |
-| Photos | Albums et galerie plein écran (navigation précédent/suivant) |
-| Espace adhérents | Compositions du week-end, infos pratiques, contacts |
+| `data/content.json` | **Tout le contenu** : réglages du site, actualités, matchs/résultats, équipes, albums/photos, compositions, classement |
+| `public/uploads/…` | Photos (articles, équipes, albums) — stockées dans le dépôt |
+| `public/img/…` | Logo et visuels de démonstration |
+| `*.html` | Pages du site (accueil, club, équipes, N3, actualités, photos, adhérents…) |
+| `admin.html` | Espace administrateur |
 
-## Espace adhérents
+## Contenu de démonstration
 
-- Accessible depuis le bouton **« Espace adhérents »** du menu.
-- Rubrique **« Compositions du week-end »** : un parent ou un joueur voit en quelques secondes *où je joue, contre qui, à quelle heure et avec qui* (Samedi/Dimanche, équipe, adversaire, date, heure, lieu, composition, absents, note).
-- **Code d'accès optionnel** : laissez le champ vide dans *Réglages* pour un accès libre, ou définissez un code partagé (ex. l'année) que les adhérents saisiront.
+Les textes, effectifs, résultats, compositions et classements fournis sont des **exemples** signalés par un bandeau « Site de démonstration ». Remplacez-les depuis l'administration (ou éditez `data/content.json`).
 
-## Administration (volontairement simple)
+Les images de démonstration à remplacer par les vraies photos du club :
+- `public/img/logo.jpg` (logo officiel haute définition), `hero.jpg`, `n3-team.webp`, `club.jpg` ;
+- les placeholders `public/uploads/photos/*.svg` (« Emplacement réservé — photo à intégrer »).
 
-Le tableau de bord regroupe 8 sections :
-
-1. **Actualités** — créer / modifier / supprimer, choisir la catégorie, ajouter une photo, publier ou non.
-2. **Résultats & matchs** — ajouter un match : *sans score* → « prochains matchs » ; *avec score* → « résultats ».
-3. **Photos** — créer un album, ajouter des photos, renommer, supprimer.
-4. **Compositions** — choisir l'équipe, le jour, la date, l'adversaire, l'heure, le lieu, les joueurs présents et les absents, puis **Publier** / **Dépublier**.
-5. **Équipes** — modifier présentation, encadrement et effectifs (dont les stats de la N3).
-6. **Classement N3** — modifier le tableau du championnat.
-7. **Réglages** — identité du club, coordonnées, réseaux sociaux, partenaires, code adhérents, mot de passe.
-
----
-
-## Remplacer les contenus de démonstration
-
-Tous les contenus fournis (textes, effectifs, résultats, compositions, classement) sont des **exemples** signalés par un bandeau « Site de démonstration ». Ne les présentez pas comme réels.
-
-Pour intégrer les vrais contenus du club :
-
-1. Connectez-vous à l'administration et remplacez les éléments un par un (ou effacez `data/db.json` puis repartez de zéro via `lib/seed.js`).
-2. **Photos** : fournissez les vraies photos du club. Les images de démonstration sont :
-   - des **placeholders SVG** clairement identifiés (« Emplacement réservé — photo à intégrer ») ;
-   - quelques **photos de presse** (`public/img/hero.jpg`, `n3-team.webp`, `club.jpg`, `logo.jpg`) utilisées pendant la conception, à remplacer par les visuels officiels (le logo haute définition, les photos de l'équipe, etc.).
-3. **Logo** : remplacez `public/img/logo.jpg` par le logo officiel haute définition (fond blanc recommandé).
-
-### Dimensions conseillées pour les images
+### Dimensions conseillées
 
 - Photo d'actualité : 1200 × 750 (ratio 16:10)
 - Photo d'équipe / album : 1200 × 800 (ratio 3:2)
-- Logo : fond blanc, format carré ou légèrement rectangulaire
-
-Les images sont servies avec cache et les vignettes sont chargées en `lazy`. Le site reste rapide sans bibliothèque lourde.
-
----
-
-## Publication GitHub (mise à jour facile des actualités, photos, résultats…)
-
-Pour que le club puisse **mettre à jour le contenu du site facilement** sans toucher au code :
-
-1. **Créez un dépôt GitHub** (privé recommandé) pour ce projet.
-2. **Créez un token GitHub** : *GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens*. Cochez le dépôt concerné et le droit **Contents : Read and write**.
-3. Lancez le site avec les variables d'environnement (ou saisissez les identifiants directement dans l'admin) :
-
-```bash
-GITHUB_TOKEN=votre_token GITHUB_OWNER=votre_compte node server.js
-```
-
-4. Dans l'administration, ouvrez la rubrique **« Publier sur GitHub »** (nouveau gros bouton du tableau de bord) et cliquez sur **« Publier sur GitHub »**.
-
-Ce bouton envoie `data/db.json` (actualités, résultats, compositions, équipes, classement…) et toutes les photos téléversées vers le dépôt — les contenus sont ainsi sauvegardés et versionnés, et un déploiement automatique peut les remettre en ligne.
-
-### Déploiement automatique (optionnel)
-
-Un workflow est fourni dans `.github/workflows/deploy.yml` (GitHub Actions). Sur un hébergeur Node, il installe les dépendances et démarre le serveur après chaque mise à jour du dépôt. Adaptez la commande de lancement à votre hébergeur (voir commentaires dans le fichier).
-
-> 🔑 **Sécurité** : le token GitHub n'est jamais enregistré sur le disque — il n'est utilisé qu'en mémoire pendant la session. Sur un hébergement persistant, préférez le définir en variable d'environnement.
-
----
+- Logo : fond blanc, carré ou légèrement rectangulaire
 
 ## Architecture
 
 ```
-server.js            — application Express (routes publiques + admin)
-lib/db.js            — stockage JSON (data/db.json), sauvegarde automatique
-lib/seed.js          — contenus de démonstration
-lib/github.js        — publication du contenu vers GitHub (bouton admin)
-lib/util.js          — helpers (slugs, dates…)
-middleware/auth.js   — session, CSRF, garde admin
-views/               — pages EJS (publique + admin)
-public/css/style.css — design system complet (bleu & blanc, touche dorée)
-public/js/           — interactions (menu, lightbox, formulaires admin)
-public/fonts/        — Barlow / Barlow Condensed auto-hébergées
-public/uploads/      — photos téléversées par le club
-public/img/          — logo et visuels de démonstration
+*.html              — pages statiques (générées par tools/build-pages.js)
+data/content.json   — contenu unique du site (modifié par l'administration)
+admin.html          — administration (écrit dans GitHub via l'API)
+public/css/style.css — design system (bleu & blanc, touche dorée)
+public/js/site.js   — rendu des pages côté client (lecture de content.json)
+public/js/admin.js  — logique de l'administration (API GitHub)
+public/fonts/       — Barlow / Barlow Condensed auto-hébergées
+public/img/         — logo et visuels
+public/uploads/     — photos du club
+tools/build-pages.js — régénère les pages HTML (node tools/build-pages.js)
 ```
 
-### Évolutions prévues (faciles à ajouter)
+## Points à connaître
 
-Calendrier complet, classement d'autres championnats, notifications, inscriptions en ligne, boutique, nouveaux partenaires, nouvelles équipes : l'architecture (collections JSON + pages + administration) est pensée pour évoluer.
-
----
-
-## Sécurité & production
-
-- Authentification par session + mot de passe **haché (bcrypt)**.
-- Protection **CSRF** sur tous les formulaires d'administration.
-- Seuls les comptes administrateurs accèdent à `/admin`.
-- Pour une mise en production :
-  - définir `ADMIN_PASSWORD` (variable d'environnement) au premier lancement ;
-  - servir en HTTPS ;
-  - remplacer la session en mémoire par un store persistant (ex. `connect-sqlite3` / Redis) ;
-  - adapter `site.domain` et les URL de partage dans les vues si le domaine change.
-
----
-
-## SEO
-
-Titres et meta descriptions par page, `canonical`, Open Graph, données structurées `SportsOrganization` (schema.org), URLs propres (`/n3`, `/club`, `/equipes/...`), balises H1/H2, alt sur les images, et mots-clés locaux (Rink Hockey Quévert, Rink Hockey Dinan, HC Dinan Quévert, Côtes-d'Armor, Bretagne).
+- **Espace adhérents** : protégé par un code facultatif (défini dans *Réglages*). Il s'agit d'une protection légère côté navigateur, adaptée à un usage associatif.
+- **Sécurité de l'administration** : la clé GitHub **est** le mot de passe. Elle n'est conservée que pendant la session (jamais écrite dans le site). Ne la partagez jamais.
+- **Délai de mise à jour** : après un enregistrement, le site se met à jour en environ une minute (redéploiement GitHub Pages).
+- **SEO** : titres et meta descriptions par page, balises H1/H2, alt sur les images, mots-clés locaux (Rink Hockey Quévert, Rink Hockey Dinan, HC Dinan Quévert, Côtes-d'Armor, Bretagne).

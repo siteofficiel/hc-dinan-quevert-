@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administration · HC Dinan-Quévert</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+  <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body class="admin">
+
+  <!-- Écran de connexion -->
+  <div id="loginPanel" class="login" hidden>
+    <div class="login__card">
+      <div class="login__brand">
+        <img src="public/img/logo.jpg" alt="Logo HC Dinan-Quévert" width="64" height="56">
+        <h1 class="login__title">Espace administrateur</h1>
+        <p class="login__sub">HC Dinan-Quévert — publication GitHub</p>
+      </div>
+      <p class="login__error" id="loginError" role="alert" hidden></p>
+      <form class="login__form" id="loginForm">
+        <div class="field">
+          <label class="field__label" for="token">Clé GitHub (token)</label>
+          <input class="field__input" id="token" type="password" autocomplete="off" placeholder="github_pat_…" required>
+          <p class="field__hint">Créée sur GitHub : Settings → Developer settings → Fine-grained tokens → droit <strong>Contents : Read and write</strong>.</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="owner">Propriétaire du dépôt</label>
+          <input class="field__input" id="owner" type="text" placeholder="ex. HC-Dinan-Quevert" required>
+        </div>
+        <div class="field">
+          <label class="field__label" for="repo">Nom du dépôt</label>
+          <input class="field__input" id="repo" type="text" placeholder="hc-dinan-quevert" required>
+        </div>
+        <button class="btn btn--primary btn--block" type="submit">Se connecter</button>
+      </form>
+      <a class="login__back" href="index.html">← Retour au site</a>
+      <p class="field__hint" style="margin-top:14px">La clé n’est conservée que pendant cette session (elle n’est jamais enregistrée dans le site).</p>
+    </div>
+  </div>
+
+  <!-- Application -->
+  <div class="admin-shell" id="adminShell" hidden>
+    <header class="admin-topbar">
+      <a class="admin-topbar__brand" href="#">
+        <img src="public/img/logo.jpg" alt="" width="34" height="30">
+        <span>Administration<br><small>HC Dinan-Quévert · <span id="repoLabel"></span></small></span>
+      </a>
+      <div class="admin-topbar__actions">
+        <a class="btn btn--outline btn--sm" href="index.html" target="_blank" rel="noopener">Voir le site</a>
+        <button class="btn btn--ghost-dark btn--sm" id="logoutBtn" type="button">Déconnexion</button>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <nav class="admin-nav" aria-label="Sections d’administration" id="adminNav"></nav>
+      <main class="admin-content" id="contenu">
+        <div id="flash"></div>
+        <div id="content"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="public/js/admin.js"></script>
+</body>
+</html>

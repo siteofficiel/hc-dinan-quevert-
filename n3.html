@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Équipe N3 · HC Dinan-Quévert</title>
+  <meta name="description" content="La Nationale 3 du HC Dinan-Quévert : effectif, staff, calendrier, résultats, classement, statistiques et galerie photos.">
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+  <link rel="preload" href="public/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body data-page="n3">
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<div class="demo-bar" id="demoBar" role="note">
+  <span><strong>Site de démonstration.</strong> Les textes, résultats, effectifs et photos sont des exemples, à remplacer par les contenus officiels du club.</span>
+  <button type="button" class="demo-bar__close" id="demoBarClose" aria-label="Fermer ce bandeau">✕</button>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <p class="topbar__item"><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-bind="salle"></span></p>
+      <p class="topbar__item topbar__item--hide"><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span data-bind="telephone"></span></p>
+      <div class="topbar__socials">
+        <a href="#" data-href="facebook" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v2.3H8.6V14H11v7h2.5z"/></svg></a>
+        <a href="#" data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" data-href="youtube" target="_blank" rel="noopener" aria-label="YouTube"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.8-.5-5.6c-.3-1-1.1-1.8-2.1-2C18.6 4 12 4 12 4s-6.6 0-8.4.4c-1 .2-1.8 1-2.1 2C1 8.2 1 12 1 12s0 3.8.5 5.6c.3 1 1.1 1.8 2.1 2 1.8.4 8.4.4 8.4.4s6.6 0 8.4-.4c1-.2 1.8-1 2.1-2 .5-1.8.5-5.6.5-5.6zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="container header-main">
+    <a class="brand" href="index.html" aria-label="Accueil">
+      <span class="brand__logo"><img src="public/img/logo.jpg" alt="Logo HC Dinan-Quévert" width="48" height="42"></span>
+      <span class="brand__text">
+        <span class="brand__name" data-bind="nomCourt"></span>
+        <span class="brand__sub" data-bind="sousTitre"></span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="club.html">Le club</a></li>
+        <li><a href="equipes.html">Équipes</a></li>
+        <li><a href="n3.html">N3</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="photos.html">Photos</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--adherent" href="adherents.html">
+        <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+        Espace adhérents
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="club.html">Le club</a></li>
+      <li><a href="equipes.html">Équipes</a></li>
+      <li><a href="n3.html">N3</a></li>
+      <li><a href="actualites.html">Actualités</a></li>
+      <li><a href="photos.html">Photos</a></li>
+      <li><a href="adherents.html" class="mobile-nav__cta">Espace adhérents</a></li>
+      <li><a href="admin.html" class="mobile-nav__admin">Espace administrateur</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="contenu" class="page-n3">
+
+  <section class="n3-hero" id="n3Hero">
+    <div class="n3-hero__overlay"></div>
+    <div class="container n3-hero__inner">
+      <p class="n3-hero__kicker">Nationale 3 · L’équipe qui monte</p>
+      <h1 class="n3-hero__title">N3</h1>
+      <p class="n3-hero__sub"></p>
+      <div class="n3-hero__actions">
+        <a class="btn btn--gold" href="#effectif">Voir l’effectif</a>
+        <a class="btn btn--ghost" href="photos.html" data-n3album>Galerie photos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="n3-stats" aria-label="Statistiques de la N3">
+    <div class="container n3-stats__grid" id="n3Stats"></div>
+  </section>
+
+  <section class="section" aria-labelledby="n3-presentation">
+    <div class="container two-col">
+      <div>
+        <p class="section-head__kicker section-head__kicker--gold">La réserve compétitive</p>
+        <h2 class="section-head__title" id="n3-presentation">Jeunesse et expérience</h2>
+      </div>
+      <div class="prose" id="n3Presentation"></div>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="n3-matchs">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">L’agenda de la N3</p>
+          <h2 class="section-head__title" id="n3-matchs">Matchs &amp; résultats</h2>
+        </div>
+      </div>
+      <div class="split-match">
+        <div><h3 class="mini-title">Prochains matchs</h3><div id="n3Prochains"></div></div>
+        <div><h3 class="mini-title">Derniers résultats</h3><div id="n3Resultats"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="n3-classement">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">Le championnat</p>
+          <h2 class="section-head__title" id="n3-classement">Classement</h2>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table class="standing-table">
+          <caption class="visually-hidden">Classement du championnat — Nationale 3</caption>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col" class="ta-l">Équipe</th><th scope="col">Pts</th><th scope="col">J</th><th scope="col">G</th><th scope="col">N</th><th scope="col">P</th><th scope="col">+/-</th></tr>
+          </thead>
+          <tbody id="classementTable"></tbody>
+        </table>
+      </div>
+      <p class="table-note">Classement de démonstration — à mettre à jour depuis l’administration.</p>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="effectif" aria-labelledby="n3-effectif">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">Le groupe</p>
+          <h2 class="section-head__title section-head__title--white" id="n3-effectif">L’effectif</h2>
+        </div>
+      </div>
+      <div class="player-grid" id="n3Effectif"></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="n3-galerie">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">En images</p>
+          <h2 class="section-head__title" id="n3-galerie">Galerie N3</h2>
+        </div>
+        <a class="link-arrow" href="photos.html" data-n3album>Voir l’album complet</a>
+      </div>
+      <div class="gallery-grid" id="n3Gallery"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-col--brand">
+      <a class="brand brand--footer" href="index.html">
+        <span class="brand__logo brand__logo--footer"><img src="public/img/logo.jpg" alt="Logo HC Dinan-Quévert" width="56" height="50"></span>
+        <span class="brand__text">
+          <span class="brand__name" data-bind="nomCourt"></span>
+          <span class="brand__sub" data-bind="sousTitre"></span>
+        </span>
+      </a>
+      <p class="footer-about" data-bind="sloganDetail"></p>
+      <div class="footer-socials">
+        <a href="#" data-href="facebook" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v2.3H8.6V14H11v7h2.5z"/></svg></a>
+        <a href="#" data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" data-href="youtube" target="_blank" rel="noopener" aria-label="YouTube"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.8-.5-5.6c-.3-1-1.1-1.8-2.1-2C18.6 4 12 4 12 4s-6.6 0-8.4.4c-1 .2-1.8 1-2.1 2C1 8.2 1 12 1 12s0 3.8.5 5.6c.3 1 1.1 1.8 2.1 2 1.8.4 8.4.4 8.4.4s6.6 0 8.4-.4c1-.2 1.8-1 2.1-2 .5-1.8.5-5.6.5-5.6zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h2 class="footer-title">Le club</h2>
+      <ul class="footer-links">
+        <li><a href="club.html">Présentation &amp; histoire</a></li>
+        <li><a href="equipes.html">Nos équipes</a></li>
+        <li><a href="n3.html">Équipe N3</a></li>
+        <li><a href="actualites.html">Actualités</a></li>
+        <li><a href="photos.html">Photos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h2 class="footer-title">Contact</h2>
+      <ul class="footer-links footer-links--contact">
+        <li><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-bind="adresse"></span></li>
+        <li><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span data-bind="telephone"></span></li>
+        <li><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg><a href="#" data-href="email"><span data-bind="email"></span></a></li>
+        <li><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><a href="#" data-href="salleLien" target="_blank" rel="noopener"><span data-bind="salle"></span></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h2 class="footer-title">Accès rapide</h2>
+      <ul class="footer-links">
+        <li><a href="adherents.html" class="footer-link--strong">Espace adhérents</a></li>
+        <li><a href="compositions.html">Compositions du week-end</a></li>
+        <li><a href="actualites.html?tab=resultats">Résultats</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-partners">
+    <h2 class="footer-title footer-title--partners">Nos partenaires</h2>
+    <ul class="partners-list" id="partnersList"></ul>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom__inner">
+      <p>© <span data-bind="year"></span> <span data-bind="nomComplet"></span> — Rink hockey · Quévert · Dinan. Site réalisé pour le club.</p>
+      <a href="admin.html" class="btn btn--admin-access">
+        <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+        Espace administrateur
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="public/js/site.js" defer></script>
+</body>
+</html>

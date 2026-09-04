@@ -1,0 +1,867 @@
+{
+  "settings": {
+    "nomCourt": "HC Dinan-Quévert",
+    "nomComplet": "Hockey Club Dinan-Quévert Côtes d’Armor",
+    "sousTitre": "Rink hockey · Pays de Dinan · depuis 1987",
+    "slogan": "L’esprit bleu & blanc",
+    "sloganDetail": "Un club familial et compétitif, au cœur des Côtes-d’Armor.",
+    "presentation": "Fondé en 1987 à Quévert, le Hockey Club Dinan-Quévert est l’un des grands noms du rink hockey français : onze titres de champion de France, six Coupes de France et une école de patinage qui forme les générations de demain.",
+    "email": "contact@hcdinan-quevert.fr",
+    "telephone": "02 96 XX XX XX",
+    "adresse": "Maison des associations, 1 rue du Val — 22100 Quévert",
+    "salle": "Salle Némée (salle omnisports) — Dinan (Côtes-d’Armor)",
+    "salleLien": "https://www.google.com/maps/search/Salle+N%C3%A9m%C3%A9e+Dinan",
+    "codeAdherent": "",
+    "facebook": "https://www.facebook.com/",
+    "instagram": "https://www.instagram.com/",
+    "youtube": "https://www.youtube.com/",
+    "partenaires": [
+      "Team Cordon",
+      "Ville de Dinan",
+      "Ville de Quévert",
+      "Département des Côtes-d’Armor",
+      "Région Bretagne"
+    ],
+    "palmares": [
+      {
+        "value": "11",
+        "label": "Titres de champion de France"
+      },
+      {
+        "value": "6",
+        "label": "Coupes de France"
+      },
+      {
+        "value": "1987",
+        "label": "Année de création"
+      },
+      {
+        "value": "1 600",
+        "label": "Places à la salle Némée"
+      }
+    ],
+    "histoire": [
+      {
+        "annee": "1987",
+        "texte": "Création du HC Quévert à l’initiative de Thierry Lemarié et Yannick Ricaille, avec le soutien de la commune de Quévert. L’école de patinage accueille plus de 80 enfants dès le premier mois."
+      },
+      {
+        "annee": "1992",
+        "texte": "Champion de France de Nationale 2 : le club accède à la N1, qu’il ne quittera plus."
+      },
+      {
+        "annee": "1997–2000",
+        "texte": "Première grande époque : quatre titres de champion de France en quatre saisons (1997, 1998, 1999, 2000)."
+      },
+      {
+        "annee": "2008",
+        "texte": "Année historique : doublé championnat – Coupe de France, et 9ᵉ place au Mondial des clubs."
+      },
+      {
+        "annee": "2024–2025",
+        "texte": "Le club ajoute deux nouvelles Coupes de France à son palmarès (2024, 2025) et brille sur la scène européenne."
+      },
+      {
+        "annee": "Aujourd’hui",
+        "texte": "Un club formateur fort de ses équipes N1 Élite, N3 et de toute sa filière jeunes, porté par ses bénévoles."
+      }
+    ]
+  },
+  "actualites": [
+    {
+      "slug": "gala-equipe-de-france-salle-nemee",
+      "titre": "Gala de rentrée : le HC Dinan-Quévert défie l’équipe de France",
+      "categorie": "Événements",
+      "dateISO": "2026-09-03",
+      "image": "public/img/hero.jpg",
+      "resume": "Jeudi 24 septembre à 19 h 30, la salle Némée accueille un match de gala exceptionnel entre le HC Dinan-Quévert et l’équipe de France, en pleine préparation du Mondial.",
+      "contenu": "La saison 2026-2027 démarre en beauté à Dinan ! Jeudi 24 septembre à 19 h 30, l’équipe fanion reçoit l’équipe de France à la salle Némée, dans le cadre de la préparation des Bleus au championnat du monde.\n\nCe sera l’occasion de découvrir les recrues de la saison et de retrouver l’ambiance si particulière de la salle Némée.\n\nBilletterie et informations à la salle le soir du match. Venez nombreux, en bleu et blanc !",
+      "publie": true,
+      "epingle": true,
+      "demo": true,
+      "id": "mtnfynkq8h3rx",
+      "createdAt": "2026-09-04T21:03:51.002Z",
+      "updatedAt": "2026-09-04T21:03:51.002Z"
+    },
+    {
+      "slug": "reprise-entrainement-saison-2026-2027",
+      "titre": "Reprise de l’entraînement : la saison 2026-2027 est lancée",
+      "categorie": "Vie du club",
+      "dateISO": "2026-08-28",
+      "image": "public/uploads/photos/club-02.svg",
+      "resume": "Toutes les catégories ont retrouvé le chemin des parquets. Retrouvez les créneaux d’entraînement et les informations d’inscription.",
+      "contenu": "Après la pause estivale, toutes les équipes du HC Dinan-Quévert ont repris l’entraînement à la salle Némée et au gymnase de Quévert.\n\nLes créneaux par catégorie sont affichés à la salle et communiqués par les responsables d’équipe. Les inscriptions restent ouvertes toute l’année pour l’école de patinage.\n\nPrêt ? Chaussez les patins !",
+      "publie": true,
+      "epingle": false,
+      "demo": true,
+      "id": "mtnfynkq6x20j",
+      "createdAt": "2026-09-04T21:03:51.002Z",
+      "updatedAt": "2026-09-04T21:03:51.002Z"
+    },
+    {
+      "slug": "recrues-2026-2027",
+      "titre": "Trois recrues pour la saison 2026-2027",
+      "categorie": "Vie du club",
+      "dateISO": "2026-08-20",
+      "image": "public/uploads/photos/club-01.svg",
+      "resume": "Lluc Vila, Adria Ballart et Xavier Cardoso rejoignent les bords de la Rance pour la nouvelle saison.",
+      "contenu": "Le HC Dinan-Quévert accueille trois nouveaux joueurs pour la saison 2026-2027 : deux Espagnols, Lluc Vila et Adria Ballart, et le Portugais Xavier Cardoso, joueur expérimenté passé par la sélection portugaise.\n\nBienvenue à eux sous les couleurs bleu et blanc !",
+      "publie": true,
+      "epingle": false,
+      "demo": true,
+      "id": "mtnfynkr598kg",
+      "createdAt": "2026-09-04T21:03:51.003Z",
+      "updatedAt": "2026-09-04T21:03:51.003Z"
+    },
+    {
+      "slug": "la-n3-lance-sa-saison",
+      "titre": "La N3 lance sa saison en amical",
+      "categorie": "N3",
+      "dateISO": "2026-08-16",
+      "image": "public/uploads/photos/n3-01.svg",
+      "resume": "Victoire encourageante à Ploufragan (5-2) pour l’équipe de Nationale 3, qui prépare un championnat ambitieux.",
+      "contenu": "L’équipe de Nationale 3 a bien lancé sa préparation avec une victoire 5-2 à Ploufragan. Un premier galop d’essai prometteur pour un groupe mêlant jeunesse et expérience.\n\nProchain rendez-vous : la réception d’Ergué-Gabéric le samedi 19 septembre à la salle Némée.",
+      "publie": true,
+      "epingle": false,
+      "demo": true,
+      "id": "mtnfynkrj76du",
+      "createdAt": "2026-09-04T21:03:51.003Z",
+      "updatedAt": "2026-09-04T21:03:51.003Z"
+    },
+    {
+      "slug": "portes-ouvertes-ecole-patinage",
+      "titre": "Journée portes ouvertes de l’école de patinage",
+      "categorie": "Jeunes",
+      "dateISO": "2026-08-30",
+      "image": "public/uploads/photos/jeunes-01.svg",
+      "resume": "Samedi 12 septembre, venez découvrir le rink hockey dès 4 ans : prêt de matériel et encadrement assurés.",
+      "contenu": "L’école de patinage du HC Dinan-Quévert ouvre ses portes le samedi 12 septembre. Les enfants dès 4 ans pourront chausser les patins, essayer la crosse et découvrir le rink hockey dans une ambiance familiale.\n\nMatériel prêté sur place. Inscriptions possibles sur place ou auprès du club.",
+      "publie": true,
+      "epingle": false,
+      "demo": true,
+      "id": "mtnfynkr788sx",
+      "createdAt": "2026-09-04T21:03:51.003Z",
+      "updatedAt": "2026-09-04T21:03:51.003Z"
+    }
+  ],
+  "matchs": [
+    {
+      "equipeSlug": "n3",
+      "equipeLabel": "N3",
+      "competition": "Match amical",
+      "adversaire": "RAC Saint-Brieuc",
+      "domicile": true,
+      "dateISO": "2026-08-30",
+      "heure": "18:00",
+      "lieu": "Salle Némée, Dinan",
+      "scorePour": 4,
+      "scoreContre": 3,
+      "resume": "Les Quévertois s’imposent sur le fil dans un derby disputé. Une victoire encourageante pour la préparation.",
+      "publie": true,
+      "demo": true,
+      "id": "mtnfynkp1bvsx",
+      "createdAt": "2026-09-04T21:03:51.001Z",
+      "updatedAt": "2026-09-04T21:03:51.001Z"
+    },
+    {
+      "equipeSlug": "n1-elite",
+      "equipeLabel": "N1 Élite",
+      "competition": "Tournoi de préparation",
+      "adversaire": "ASTA Nantes",
+      "domicile": true,
+      "dateISO": "2026-08-23",
+      "heure": "20:30",
+      "lieu": "Salle Némée, Dinan",
+      "scorePour": 3,
+      "scoreContre": 3,
+      "resume": "Match nul spectaculaire (3-3) face à Nantes pour conclure le tournoi de préparation.",
+      "publie": true,
+      "demo": true,
+      "id": "mtnfynkpx20no",
+      "createdAt": "2026-09-04T21:03:51.001Z",
+      "updatedAt": "2026-09-04T21:03:51.001Z"
+    },
+    {
+      "equipeSlug": "n3",
+      "equipeLabel": "N3",
+      "competition": "Match amical",
+      "adversaire": "Ploufragan",
+      "domicile": false,
+      "dateISO": "2026-08-16",
+      "heure": "15:00",
+      "lieu": "Ploufragan",
+      "scorePour": 5,
+      "scoreContre": 2,
+      "resume": "Belle victoire à l’extérieur (5-2) : la N3 confirme sa montée en puissance.",
+      "publie": true,
+      "demo": true,
+      "id": "mtnfynkptkajc",
+      "createdAt": "2026-09-04T21:03:51.001Z",
+      "updatedAt": "2026-09-04T21:03:51.001Z"
+    },
+    {
+      "equipeSlug": "n1-elite",
+      "equipeLabel": "N1 Élite",
+      "competition": "Match de gala",
+      "adversaire": "Équipe de France",
+      "domicile": true,
+      "dateISO": "2026-09-24",
+      "heure": "19:30",
+      "lieu": "Salle Némée, Dinan",
+      "scorePour": null,
+      "scoreContre": null,
+      "resume": "",
+      "publie": true,
+      "demo": false,
+      "id": "mtnfynkpjkvs3",
+      "createdAt": "2026-09-04T21:03:51.001Z",
+      "updatedAt": "2026-09-04T21:03:51.001Z"
+    },
+    {
+      "equipeSlug": "n3",
+      "equipeLabel": "N3",
+      "competition": "Match amical",
+      "adversaire": "Ergué-Gabéric",
+      "domicile": true,
+      "dateISO": "2026-09-19",
+      "heure": "18:00",
+      "lieu": "Salle Némée, Dinan",
+      "scorePour": null,
+      "scoreContre": null,
+      "resume": "",
+      "publie": true,
+      "demo": true,
+      "id": "mtnfynkqwi130",
+      "createdAt": "2026-09-04T21:03:51.002Z",
+      "updatedAt": "2026-09-04T21:03:51.002Z"
+    },
+    {
+      "equipeSlug": "n3",
+      "equipeLabel": "N3",
+      "competition": "Match amical",
+      "adversaire": "Quintin",
+      "domicile": false,
+      "dateISO": "2026-09-27",
+      "heure": "15:00",
+      "lieu": "Quintin",
+      "scorePour": null,
+      "scoreContre": null,
+      "resume": "",
+      "publie": true,
+      "demo": true,
+      "id": "mtnfynkqfnmsa",
+      "createdAt": "2026-09-04T21:03:51.002Z",
+      "updatedAt": "2026-09-04T21:03:51.002Z"
+    }
+  ],
+  "equipes": [
+    {
+      "slug": "n1-elite",
+      "nom": "N1 Élite",
+      "categorie": "Séniors",
+      "ordre": 1,
+      "tagline": "L’équipe fanion",
+      "couleur": "#14509A",
+      "description": "L’équipe fanion évolue au plus haut niveau français, la N1 Élite. Onze fois champion de France, le HC Dinan-Quévert fait partie des clubs majeurs du rink hockey hexagonal et porte fièrement les couleurs bretonnes sur les parquets et en coupe d’Europe.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "",
+      "image": "public/img/hero.jpg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Effectif à compléter",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynknsqzx4",
+      "createdAt": "2026-09-04T21:03:50.999Z",
+      "updatedAt": "2026-09-04T21:03:50.999Z"
+    },
+    {
+      "slug": "n3",
+      "nom": "N3",
+      "categorie": "Séniors — réserve",
+      "ordre": 2,
+      "tagline": "La réserve compétitive du club",
+      "couleur": "#0B2A54",
+      "description": "La Nationale 3 est la réserve du club : un savant mélange de jeunes formés à Quévert qui frappent à la porte de la N1 et de cadres expérimentés. Une équipe compétitive qui joue les premiers rôles de son championnat et a déjà qualifié le club en Coupe de France.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "Staff : à compléter",
+      "image": "public/img/n3-team.webp",
+      "joueurs": [
+        {
+          "numero": "1",
+          "nom": "Maxime Perrot",
+          "poste": "Gardien"
+        },
+        {
+          "numero": "12",
+          "nom": "Enzo Le Bihan",
+          "poste": "Gardien"
+        },
+        {
+          "numero": "3",
+          "nom": "Baptiste Rouxel",
+          "poste": "Défenseur"
+        },
+        {
+          "numero": "4",
+          "nom": "Théo Guichard",
+          "poste": "Défenseur"
+        },
+        {
+          "numero": "5",
+          "nom": "Lucas Corbel",
+          "poste": "Attaquant"
+        },
+        {
+          "numero": "7",
+          "nom": "Maël Le Saux",
+          "poste": "Attaquant"
+        },
+        {
+          "numero": "8",
+          "nom": "Romain Quéméner",
+          "poste": "Attaquant"
+        },
+        {
+          "numero": "9",
+          "nom": "Nathan Derrien",
+          "poste": "Attaquant"
+        },
+        {
+          "numero": "10",
+          "nom": "Tom Berthou",
+          "poste": "Défenseur"
+        },
+        {
+          "numero": "11",
+          "nom": "Yanis Le Corre",
+          "poste": "Attaquant"
+        }
+      ],
+      "stats": {
+        "mj": 5,
+        "g": 5,
+        "n": 0,
+        "p": 0,
+        "bp": 41,
+        "bc": 12,
+        "meilleurButeur": "— (démo)",
+        "meilleurGardien": "— (démo)"
+      },
+      "publie": true,
+      "miseEnAvant": true,
+      "id": "mtnfynknk0vbm",
+      "createdAt": "2026-09-04T21:03:50.999Z",
+      "updatedAt": "2026-09-04T21:03:50.999Z"
+    },
+    {
+      "slug": "u19",
+      "nom": "U19",
+      "categorie": "Jeunes",
+      "ordre": 3,
+      "tagline": "L’antichambre des séniors",
+      "couleur": "#14509A",
+      "description": "Les U19 constituent le dernier étage de la formation quévertoise avant le monde sénior. Encadrement exigeant et esprit de compétition pour préparer la relève bleu et blanc.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "",
+      "image": "public/uploads/photos/jeunes-01.svg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Effectif à compléter",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynknkfa8r",
+      "createdAt": "2026-09-04T21:03:50.999Z",
+      "updatedAt": "2026-09-04T21:03:50.999Z"
+    },
+    {
+      "slug": "u17",
+      "nom": "U17",
+      "categorie": "Jeunes",
+      "ordre": 4,
+      "tagline": "La génération montante",
+      "couleur": "#14509A",
+      "description": "Les U17 poursuivent leur apprentissage du haut niveau, entre technique individuelle, jeu collectif et plaisir sur les parquets.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "",
+      "image": "public/uploads/photos/jeunes-02.svg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Effectif à compléter",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynknyxbzn",
+      "createdAt": "2026-09-04T21:03:50.999Z",
+      "updatedAt": "2026-09-04T21:03:50.999Z"
+    },
+    {
+      "slug": "u15",
+      "nom": "U15",
+      "categorie": "Jeunes",
+      "ordre": 5,
+      "tagline": "Le creuset de la formation",
+      "couleur": "#14509A",
+      "description": "Chez les U15, les jeunes Quévertois consolident leurs fondamentaux et découvrent l’intensité de la compétition régionale et nationale.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "",
+      "image": "public/uploads/photos/jeunes-01.svg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Effectif à compléter",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynkndhpdm",
+      "createdAt": "2026-09-04T21:03:50.999Z",
+      "updatedAt": "2026-09-04T21:03:50.999Z"
+    },
+    {
+      "slug": "u13",
+      "nom": "U13",
+      "categorie": "Jeunes",
+      "ordre": 6,
+      "tagline": "La relève en mouvement",
+      "couleur": "#14509A",
+      "description": "Les U13 découvrent la compétition dans un cadre ludique et formateur, fidèle à l’esprit familial du club.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "",
+      "image": "public/uploads/photos/jeunes-02.svg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Effectif à compléter",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynkonmwez",
+      "createdAt": "2026-09-04T21:03:51.000Z",
+      "updatedAt": "2026-09-04T21:03:51.000Z"
+    },
+    {
+      "slug": "u11",
+      "nom": "U11",
+      "categorie": "Jeunes",
+      "ordre": 7,
+      "tagline": "Les graines de champions",
+      "couleur": "#14509A",
+      "description": "Jeux, patinage et premières passes : les U11 s’initient au rink hockey dans la joie et la bonne humeur.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "",
+      "image": "public/uploads/photos/jeunes-01.svg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Effectif à compléter",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynko00jo6",
+      "createdAt": "2026-09-04T21:03:51.000Z",
+      "updatedAt": "2026-09-04T21:03:51.000Z"
+    },
+    {
+      "slug": "u9",
+      "nom": "U9",
+      "categorie": "Jeunes",
+      "ordre": 8,
+      "tagline": "Premiers coups de crosse",
+      "couleur": "#14509A",
+      "description": "La première équipe pour les plus petits : on apprend à patiner, à tenir une crosse et surtout à prendre du plaisir.",
+      "entraineur": "Entraîneur : à compléter",
+      "entraineurAdj": "",
+      "image": "public/uploads/photos/jeunes-02.svg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Effectif à compléter",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynkoqbex9",
+      "createdAt": "2026-09-04T21:03:51.000Z",
+      "updatedAt": "2026-09-04T21:03:51.000Z"
+    },
+    {
+      "slug": "ecole-de-patinage",
+      "nom": "École de patinage",
+      "categorie": "Loisirs & découverte",
+      "ordre": 9,
+      "tagline": "Dès 4 ans, chausse les patins !",
+      "couleur": "#0E7C86",
+      "description": "L’école de patinage accueille les enfants dès 4 ans pour découvrir la glisse et le rink hockey en toute sécurité, encadrés par des bénévoles passionnés.",
+      "entraineur": "Animateurs : à compléter",
+      "entraineurAdj": "",
+      "image": "public/uploads/photos/jeunes-01.svg",
+      "joueurs": [
+        {
+          "numero": "",
+          "nom": "Groupe école de patinage",
+          "poste": ""
+        }
+      ],
+      "publie": true,
+      "miseEnAvant": false,
+      "id": "mtnfynko2dkge",
+      "createdAt": "2026-09-04T21:03:51.000Z",
+      "updatedAt": "2026-09-04T21:03:51.000Z"
+    }
+  ],
+  "albums": [
+    {
+      "slug": "n3-saison-2026-2027",
+      "nom": "N3 — saison 2026-2027",
+      "description": "Toute la saison de la Nationale 3 en images.",
+      "dateISO": "2026-09-01",
+      "demo": true,
+      "id": "mtnfynksfgkk4",
+      "createdAt": "2026-09-04T21:03:51.004Z",
+      "updatedAt": "2026-09-04T21:03:51.004Z"
+    },
+    {
+      "slug": "matchs-salle-nemee",
+      "nom": "Matchs à la salle Némée",
+      "description": "L’ambiance des soirs de match à Dinan.",
+      "dateISO": "2026-09-01",
+      "demo": true,
+      "id": "mtnfynktlc2u4",
+      "createdAt": "2026-09-04T21:03:51.005Z",
+      "updatedAt": "2026-09-04T21:03:51.005Z"
+    },
+    {
+      "slug": "ecole-de-rink-les-jeunes",
+      "nom": "École de rink — les jeunes",
+      "description": "Les premiers coups de crosse de nos jeunes pousses.",
+      "dateISO": "2026-09-01",
+      "demo": true,
+      "id": "mtnfynkvcja6k",
+      "createdAt": "2026-09-04T21:03:51.007Z",
+      "updatedAt": "2026-09-04T21:03:51.007Z"
+    },
+    {
+      "slug": "vie-du-club-evenements",
+      "nom": "Vie du club & événements",
+      "description": "Tournois, soirées, animations : la vie du HCQ.",
+      "dateISO": "2026-09-01",
+      "demo": true,
+      "id": "mtnfynkx0e15m",
+      "createdAt": "2026-09-04T21:03:51.009Z",
+      "updatedAt": "2026-09-04T21:03:51.009Z"
+    }
+  ],
+  "photos": [
+    {
+      "albumId": "mtnfynksfgkk4",
+      "fichier": "public/uploads/photos/n3-01.svg",
+      "legende": "",
+      "id": "mtnfynks24yhj",
+      "createdAt": "2026-09-04T21:03:51.004Z",
+      "updatedAt": "2026-09-04T21:03:51.004Z"
+    },
+    {
+      "albumId": "mtnfynksfgkk4",
+      "fichier": "public/uploads/photos/n3-02.svg",
+      "legende": "",
+      "id": "mtnfynktr6b1c",
+      "createdAt": "2026-09-04T21:03:51.005Z",
+      "updatedAt": "2026-09-04T21:03:51.005Z"
+    },
+    {
+      "albumId": "mtnfynksfgkk4",
+      "fichier": "public/uploads/photos/n3-03.svg",
+      "legende": "",
+      "id": "mtnfynktclbs5",
+      "createdAt": "2026-09-04T21:03:51.005Z",
+      "updatedAt": "2026-09-04T21:03:51.005Z"
+    },
+    {
+      "albumId": "mtnfynktlc2u4",
+      "fichier": "public/uploads/photos/match-01.svg",
+      "legende": "",
+      "id": "mtnfynkuodu4m",
+      "createdAt": "2026-09-04T21:03:51.006Z",
+      "updatedAt": "2026-09-04T21:03:51.006Z"
+    },
+    {
+      "albumId": "mtnfynktlc2u4",
+      "fichier": "public/uploads/photos/match-02.svg",
+      "legende": "",
+      "id": "mtnfynkuzaqkt",
+      "createdAt": "2026-09-04T21:03:51.006Z",
+      "updatedAt": "2026-09-04T21:03:51.006Z"
+    },
+    {
+      "albumId": "mtnfynktlc2u4",
+      "fichier": "public/uploads/photos/match-03.svg",
+      "legende": "",
+      "id": "mtnfynkv7fxq4",
+      "createdAt": "2026-09-04T21:03:51.007Z",
+      "updatedAt": "2026-09-04T21:03:51.007Z"
+    },
+    {
+      "albumId": "mtnfynkvcja6k",
+      "fichier": "public/uploads/photos/jeunes-01.svg",
+      "legende": "",
+      "id": "mtnfynkwxtqdi",
+      "createdAt": "2026-09-04T21:03:51.008Z",
+      "updatedAt": "2026-09-04T21:03:51.008Z"
+    },
+    {
+      "albumId": "mtnfynkvcja6k",
+      "fichier": "public/uploads/photos/jeunes-02.svg",
+      "legende": "",
+      "id": "mtnfynkwhdl8e",
+      "createdAt": "2026-09-04T21:03:51.008Z",
+      "updatedAt": "2026-09-04T21:03:51.008Z"
+    },
+    {
+      "albumId": "mtnfynkx0e15m",
+      "fichier": "public/uploads/photos/club-01.svg",
+      "legende": "",
+      "id": "mtnfynkxhm4kb",
+      "createdAt": "2026-09-04T21:03:51.009Z",
+      "updatedAt": "2026-09-04T21:03:51.009Z"
+    },
+    {
+      "albumId": "mtnfynkx0e15m",
+      "fichier": "public/uploads/photos/club-02.svg",
+      "legende": "",
+      "id": "mtnfynkym13oo",
+      "createdAt": "2026-09-04T21:03:51.010Z",
+      "updatedAt": "2026-09-04T21:03:51.010Z"
+    },
+    {
+      "albumId": "mtnfynkx0e15m",
+      "fichier": "public/uploads/photos/club-03.svg",
+      "legende": "",
+      "id": "mtnfynky5zv1a",
+      "createdAt": "2026-09-04T21:03:51.010Z",
+      "updatedAt": "2026-09-04T21:03:51.010Z"
+    },
+    {
+      "albumId": "mtnfynkx0e15m",
+      "fichier": "public/uploads/photos/club-04.svg",
+      "legende": "",
+      "id": "mtnfynkz6m36q",
+      "createdAt": "2026-09-04T21:03:51.011Z",
+      "updatedAt": "2026-09-04T21:03:51.011Z"
+    }
+  ],
+  "compositions": [
+    {
+      "equipeSlug": "n3",
+      "equipeLabel": "N3",
+      "jour": "Samedi",
+      "dateISO": "2026-09-19",
+      "adversaire": "Ergué-Gabéric",
+      "domicile": true,
+      "heure": "18:00",
+      "lieu": "Salle Némée, Dinan",
+      "joueurs": [
+        {
+          "nom": "Maxime Perrot",
+          "poste": "Gardien",
+          "present": true
+        },
+        {
+          "nom": "Baptiste Rouxel",
+          "poste": "Joueur",
+          "present": true
+        },
+        {
+          "nom": "Théo Guichard",
+          "poste": "Joueur",
+          "present": true
+        },
+        {
+          "nom": "Lucas Corbel",
+          "poste": "Joueur",
+          "present": true
+        },
+        {
+          "nom": "Maël Le Saux",
+          "poste": "Joueur",
+          "present": true
+        },
+        {
+          "nom": "Romain Quéméner",
+          "poste": "Joueur",
+          "present": true
+        },
+        {
+          "nom": "Nathan Derrien",
+          "poste": "Joueur",
+          "present": true
+        }
+      ],
+      "absents": [
+        "Tom Berthou",
+        "Yanis Le Corre"
+      ],
+      "note": "Rendez-vous à 17 h 15 à la salle. Maillot bleu.",
+      "publie": true,
+      "demo": true,
+      "id": "mtnfynl3idapf",
+      "createdAt": "2026-09-04T21:03:51.016Z",
+      "updatedAt": "2026-09-04T21:03:51.016Z"
+    },
+    {
+      "equipeSlug": "u15",
+      "equipeLabel": "U15",
+      "jour": "Samedi",
+      "dateISO": "2026-09-19",
+      "adversaire": "Ploufragan",
+      "domicile": false,
+      "heure": "14:30",
+      "lieu": "Ploufragan",
+      "joueurs": [
+        {
+          "nom": "Groupe U15",
+          "poste": "Joueur",
+          "present": true
+        }
+      ],
+      "absents": [],
+      "note": "Départ en covoiturage à 13 h 15 devant la salle.",
+      "publie": true,
+      "demo": true,
+      "id": "mtnfynl4xrjvq",
+      "createdAt": "2026-09-04T21:03:51.016Z",
+      "updatedAt": "2026-09-04T21:03:51.016Z"
+    }
+  ],
+  "classement": [
+    {
+      "pos": 1,
+      "equipe": "HC Dinan-Quévert",
+      "pts": 15,
+      "j": 5,
+      "g": 5,
+      "n": 0,
+      "p": 0,
+      "bp": 41,
+      "bc": 12,
+      "id": "mtnfynl0ts1rm",
+      "createdAt": "2026-09-04T21:03:51.012Z",
+      "updatedAt": "2026-09-04T21:03:51.012Z"
+    },
+    {
+      "pos": 2,
+      "equipe": "Ploufragan",
+      "pts": 12,
+      "j": 5,
+      "g": 4,
+      "n": 0,
+      "p": 1,
+      "bp": 33,
+      "bc": 18,
+      "id": "mtnfynl02g8my",
+      "createdAt": "2026-09-04T21:03:51.012Z",
+      "updatedAt": "2026-09-04T21:03:51.012Z"
+    },
+    {
+      "pos": 3,
+      "equipe": "Quintin",
+      "pts": 9,
+      "j": 5,
+      "g": 3,
+      "n": 0,
+      "p": 2,
+      "bp": 27,
+      "bc": 22,
+      "id": "mtnfynl15hxah",
+      "createdAt": "2026-09-04T21:03:51.013Z",
+      "updatedAt": "2026-09-04T21:03:51.013Z"
+    },
+    {
+      "pos": 4,
+      "equipe": "RAC Saint-Brieuc",
+      "pts": 9,
+      "j": 5,
+      "g": 3,
+      "n": 0,
+      "p": 2,
+      "bp": 24,
+      "bc": 24,
+      "id": "mtnfynl16rmvc",
+      "createdAt": "2026-09-04T21:03:51.013Z",
+      "updatedAt": "2026-09-04T21:03:51.013Z"
+    },
+    {
+      "pos": 5,
+      "equipe": "Ergué-Gabéric",
+      "pts": 6,
+      "j": 5,
+      "g": 2,
+      "n": 0,
+      "p": 3,
+      "bp": 21,
+      "bc": 28,
+      "id": "mtnfynl26dyos",
+      "createdAt": "2026-09-04T21:03:51.014Z",
+      "updatedAt": "2026-09-04T21:03:51.014Z"
+    },
+    {
+      "pos": 6,
+      "equipe": "Pacé",
+      "pts": 3,
+      "j": 5,
+      "g": 1,
+      "n": 0,
+      "p": 4,
+      "bp": 19,
+      "bc": 30,
+      "id": "mtnfynl277xf6",
+      "createdAt": "2026-09-04T21:03:51.014Z",
+      "updatedAt": "2026-09-04T21:03:51.014Z"
+    },
+    {
+      "pos": 7,
+      "equipe": "Plonéour-Lanvern",
+      "pts": 1,
+      "j": 5,
+      "g": 0,
+      "n": 1,
+      "p": 4,
+      "bp": 15,
+      "bc": 36,
+      "id": "mtnfynl3l8jkv",
+      "createdAt": "2026-09-04T21:03:51.015Z",
+      "updatedAt": "2026-09-04T21:03:51.015Z"
+    },
+    {
+      "pos": 8,
+      "equipe": "Saint-Grégoire",
+      "pts": 0,
+      "j": 5,
+      "g": 0,
+      "n": 0,
+      "p": 5,
+      "bp": 10,
+      "bc": 40,
+      "id": "mtnfynl3wkdhj",
+      "createdAt": "2026-09-04T21:03:51.015Z",
+      "updatedAt": "2026-09-04T21:03:51.015Z"
+    }
+  ]
+}
