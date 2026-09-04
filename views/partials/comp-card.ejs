@@ -1,0 +1,48 @@
+<% // Carte de composition du week-end. Paramètre : c (composition) %>
+<% const gardiens = (c.joueurs || []).filter(j => j.poste === 'Gardien');
+   const joueurs = (c.joueurs || []).filter(j => j.poste !== 'Gardien'); %>
+<article class="comp-card">
+  <header class="comp-card__head">
+    <div class="comp-card__badges">
+      <span class="comp-card__jour"><%= c.jour %></span>
+      <span class="comp-card__equipe">ÉQUIPE <%= c.equipeLabel %></span>
+      <% if (c.demo) { %><span class="comp-card__demo">Démo</span><% } %>
+    </div>
+    <div class="comp-card__match">
+      <strong>Quévert</strong>
+      <em>vs</em>
+      <strong><%= c.adversaire %></strong>
+      <span class="comp-card__domicile"><%= c.domicile ? 'à domicile' : 'à l’extérieur' %></span>
+    </div>
+    <ul class="comp-card__info">
+      <li><span>Date</span><strong><%= util.formatDateLong(c.dateISO) %></strong></li>
+      <li><span>Heure</span><strong><%= c.heure || '—' %></strong></li>
+      <li><span>Lieu</span><strong><%= c.lieu || '—' %></strong></li>
+    </ul>
+  </header>
+
+  <div class="comp-card__body">
+    <h3 class="comp-card__subtitle">Composition</h3>
+    <ul class="comp-list">
+      <% gardiens.forEach((j, i) => { %>
+      <li class="comp-list__item">
+        <span class="comp-list__poste comp-list__poste--gk">Gardien</span>
+        <span class="comp-list__name"><%= j.nom %></span>
+      </li>
+      <% }) %>
+      <% joueurs.forEach((j, i) => { %>
+      <li class="comp-list__item">
+        <span class="comp-list__poste">Joueur <%= i + 1 %></span>
+        <span class="comp-list__name"><%= j.nom %></span>
+      </li>
+      <% }) %>
+    </ul>
+
+    <% if ((c.absents || []).length) { %>
+    <p class="comp-card__absents"><strong>Absents :</strong> <%= c.absents.join(', ') %></p>
+    <% } %>
+    <% if (c.note) { %>
+    <p class="comp-card__note"><strong>Note :</strong> <%= c.note %></p>
+    <% } %>
+  </div>
+</article>

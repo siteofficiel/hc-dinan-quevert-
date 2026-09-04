@@ -1,0 +1,28 @@
+<%- include('partials/head', { pageTitle: 'Gérer les équipes' }) %>
+<%- include('partials/nav', { active: 'equipes' }) %>
+
+<div class="admin-pagehead">
+  <div>
+    <h1 class="admin-title">Équipes</h1>
+    <p class="admin-subtitle">Modifiez les présentations, effectifs et encadrement de chaque équipe.</p>
+  </div>
+</div>
+
+<ul class="admin-list">
+  <% equipes.forEach(e => { %>
+  <li class="admin-list__item">
+    <div class="admin-list__thumb">
+      <img src="<%= e.image || '/img/hero.jpg' %>" alt="" width="72" height="48">
+    </div>
+    <div class="admin-list__body">
+      <span class="admin-list__title"><%= e.nom %> <small class="admin-list__categ">· <%= e.categorie %></small></span>
+      <span class="admin-list__meta"><%= (e.joueurs || []).length %> joueurs · <%= e.entraineur %> <%= !e.publie ? '· masquée' : '' %></span>
+    </div>
+    <div class="admin-list__actions">
+      <a class="btn btn--outline btn--sm" href="/admin/equipes/<%= e.id %>">Modifier</a>
+    </div>
+  </li>
+  <% }) %>
+</ul>
+
+<%- include('partials/foot') %>

@@ -1,0 +1,61 @@
+<%- include('partials/head', { pageTitle: 'Réglages du site' }) %>
+<%- include('partials/nav', { active: 'reglages' }) %>
+
+<h1 class="admin-title">Réglages du site</h1>
+<% if (query.ok) { %><p class="flash flash--ok">Réglages enregistrés.</p><% } %>
+
+<form class="admin-form" method="post" action="/admin/reglages">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <h2 class="admin-form__section">Identité du club</h2>
+  <div class="form-row">
+    <div class="field"><label class="field__label">Nom court</label><input class="field__input" name="nomCourt" type="text" value="<%= site.nomCourt %>"></div>
+    <div class="field"><label class="field__label">Nom complet</label><input class="field__input" name="nomComplet" type="text" value="<%= site.nomComplet %>"></div>
+  </div>
+  <div class="field"><label class="field__label">Sous-titre (en-tête du site)</label><input class="field__input" name="sousTitre" type="text" value="<%= site.sousTitre %>"></div>
+  <div class="form-row">
+    <div class="field"><label class="field__label">Slogan (grand titre de l’accueil)</label><input class="field__input" name="slogan" type="text" value="<%= site.slogan %>"></div>
+    <div class="field"><label class="field__label">Phrase d’accroche</label><input class="field__input" name="sloganDetail" type="text" value="<%= site.sloganDetail %>"></div>
+  </div>
+  <div class="field"><label class="field__label">Présentation courte du club</label><textarea class="field__input" name="presentation" rows="3"><%= site.presentation %></textarea></div>
+
+  <h2 class="admin-form__section">Coordonnées</h2>
+  <div class="form-row">
+    <div class="field"><label class="field__label">Email</label><input class="field__input" name="email" type="email" value="<%= site.email %>"></div>
+    <div class="field"><label class="field__label">Téléphone</label><input class="field__input" name="telephone" type="text" value="<%= site.telephone %>"></div>
+  </div>
+  <div class="field"><label class="field__label">Adresse du siège</label><input class="field__input" name="adresse" type="text" value="<%= site.adresse %>"></div>
+  <div class="form-row">
+    <div class="field"><label class="field__label">Salle des matchs</label><input class="field__input" name="salle" type="text" value="<%= site.salle %>"></div>
+    <div class="field"><label class="field__label">Lien Google Maps de la salle</label><input class="field__input" name="salleLien" type="text" value="<%= site.salleLien %>"></div>
+  </div>
+
+  <h2 class="admin-form__section">Réseaux sociaux</h2>
+  <div class="form-row">
+    <div class="field"><label class="field__label">Facebook</label><input class="field__input" name="facebook" type="text" value="<%= site.facebook %>"></div>
+    <div class="field"><label class="field__label">Instagram</label><input class="field__input" name="instagram" type="text" value="<%= site.instagram %>"></div>
+    <div class="field"><label class="field__label">YouTube</label><input class="field__input" name="youtube" type="text" value="<%= site.youtube %>"></div>
+  </div>
+
+  <h2 class="admin-form__section">Partenaires (un par ligne)</h2>
+  <div class="field"><textarea class="field__input" name="partenaires" rows="4"><%= (site.partenaires || []).join('\n') %></textarea></div>
+
+  <h2 class="admin-form__section">Accès espace adhérents</h2>
+  <div class="field">
+    <label class="field__label">Code d’accès (laisser vide = accès libre)</label>
+    <input class="field__input" name="codeAdherent" type="text" value="<%= site.codeAdherent || '' %>" placeholder="Ex. 2026">
+    <p class="field__hint">Si un code est défini, les adhérents devront le saisir pour consulter les compositions.</p>
+  </div>
+
+  <h2 class="admin-form__section">Sécurité</h2>
+  <div class="field">
+    <label class="field__label">Nouveau mot de passe administrateur (laisser vide pour ne pas changer)</label>
+    <input class="field__input" name="newPassword" type="password" autocomplete="new-password" placeholder="Nouveau mot de passe">
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn--primary" type="submit">Enregistrer les réglages</button>
+  </div>
+</form>
+
+<%- include('partials/foot') %>

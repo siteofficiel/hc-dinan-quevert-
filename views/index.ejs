@@ -1,0 +1,183 @@
+<%- include('partials/head', { pageTitle: 'Accueil' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg" style="background-image:url('/img/hero.jpg')"></div>
+    <div class="hero__overlay"></div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__logo-chip"><img src="/img/logo.jpg" alt="" width="44" height="39"><%= site.nomCourt %></span>
+        <p class="hero__kicker">Rink hockey · Pays de Dinan · depuis 1987</p>
+        <h1 class="hero__title"><%= site.slogan %></h1>
+        <p class="hero__sub"><%= site.sloganDetail %></p>
+        <div class="hero__actions">
+          <a class="btn btn--light" href="/club">Découvrir le club</a>
+          <a class="btn btn--ghost" href="/actualites">Actualités</a>
+        </div>
+        <p class="hero__tag">11 fois champion de France · 6 Coupes de France</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCHAINS MATCHS -->
+  <section class="upcoming" aria-labelledby="titre-prochains">
+    <div class="container">
+      <div class="upcoming__panel">
+        <div class="section-head section-head--light">
+          <div>
+            <p class="section-head__kicker">Ne manquez rien</p>
+            <h2 class="section-head__title" id="titre-prochains">Prochains matchs</h2>
+          </div>
+          <a class="link-arrow" href="/resultats">Tous les matchs &amp; résultats</a>
+        </div>
+        <% if (prochains.length) { %>
+        <div class="match-list">
+          <% prochains.forEach(m => { %><%- include('partials/match-card', { m }) %><% }) %>
+        </div>
+        <% } else { %>
+        <p class="empty-note">Aucun match programmé pour le moment.</p>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÉSENTATION COURTE -->
+  <section class="intro" aria-labelledby="titre-intro">
+    <div class="container intro__grid">
+      <div class="intro__text">
+        <p class="section-head__kicker">Le club</p>
+        <h2 class="section-head__title" id="titre-intro">Un grand du rink hockey, une famille</h2>
+        <p class="intro__lead"><%= site.presentation %></p>
+        <a class="btn btn--primary" href="/club">En savoir plus sur le club</a>
+      </div>
+      <div class="intro__stats">
+        <% (site.palmares || []).forEach(s => { %>
+        <div class="stat">
+          <span class="stat__value"><%= s.value %></span>
+          <span class="stat__label"><%= s.label %></span>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- DERNIER RÉSULTAT + FOCUS N3 -->
+  <section class="last-result" aria-labelledby="titre-dernier">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">Sur les parquets</p>
+          <h2 class="section-head__title" id="titre-dernier">Dernier résultat</h2>
+        </div>
+        <a class="link-arrow" href="/resultats">Tous les résultats</a>
+      </div>
+      <% if (dernier) { %><%- include('partials/result-card', { m: dernier }) %><% } else { %>
+      <p class="empty-note">Les résultats de la saison seront publiés ici.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- FOCUS N3 -->
+  <% if (n3) { %>
+  <section class="n3-focus" aria-labelledby="titre-n3">
+    <div class="container n3-focus__panel">
+      <div class="n3-focus__img"><img src="<%= n3.image %>" alt="Équipe N3 du <%= site.nomCourt %>" loading="lazy" width="640" height="400"></div>
+      <div class="n3-focus__body">
+        <p class="section-head__kicker section-head__kicker--gold">Équipe mise à l’honneur</p>
+        <h2 class="section-head__title section-head__title--white" id="titre-n3">La N3, l’équipe qui monte</h2>
+        <p class="n3-focus__text"><%= util.excerpt(n3.description, 220) %></p>
+        <% if (n3.stats) { %>
+        <ul class="n3-focus__mini">
+          <li><strong><%= n3.stats.g %> victoires</strong> en <%= n3.stats.mj %> matchs</li>
+          <li><strong><%= n3.stats.bp %> buts</strong> marqués</li>
+          <li><strong><%= n3.stats.bc %> buts</strong> encaissés</li>
+        </ul>
+        <% } %>
+        <a class="btn btn--gold" href="/n3">Découvrir l’équipe N3</a>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- DERNIÈRES ACTUALITÉS -->
+  <section class="news" aria-labelledby="titre-actus">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">La vie du club</p>
+          <h2 class="section-head__title" id="titre-actus">Dernières actualités</h2>
+        </div>
+        <a class="link-arrow" href="/actualites">Toutes les actualités</a>
+      </div>
+      <div class="news-grid">
+        <% actus.forEach(a => { %>
+        <article class="news-card">
+          <a class="news-card__media" href="/actualites/<%= a.slug %>" tabindex="-1" aria-hidden="true">
+            <img src="<%= a.image || '/img/hero.jpg' %>" alt="" loading="lazy" width="480" height="300">
+          </a>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="chip"><%= a.categorie %></span>
+              <time datetime="<%= a.dateISO %>"><%= util.formatDateShort(a.dateISO) %></time>
+            </div>
+            <h3 class="news-card__title"><a href="/actualites/<%= a.slug %>"><%= a.titre %></a></h3>
+            <p class="news-card__excerpt"><%= util.excerpt(a.resume || a.contenu, 130) %></p>
+            <a class="link-arrow" href="/actualites/<%= a.slug %>">Lire la suite</a>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- APERÇU PHOTOS -->
+  <section class="photos-preview" aria-labelledby="titre-photos">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">En images</p>
+          <h2 class="section-head__title" id="titre-photos">Dernières photos</h2>
+        </div>
+        <a class="link-arrow" href="/photos">Tous les albums</a>
+      </div>
+      <div class="album-grid album-grid--3">
+        <% albums.forEach(al => { %>
+        <a class="album-card" href="/photos/<%= al.slug %>">
+          <span class="album-card__img">
+            <% if (al.cover) { %><img src="<%= al.cover.fichier %>" alt="<%= al.nom %>" loading="lazy" width="480" height="320"><% } %>
+          </span>
+          <span class="album-card__overlay">
+            <span class="album-card__name"><%= al.nom %></span>
+            <span class="album-card__count"><%= al.count %> photo<%= al.count > 1 ? 's' : '' %></span>
+          </span>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPACE ADHÉRENTS -->
+  <section class="adherents-cta" aria-labelledby="titre-adherents">
+    <div class="container">
+      <div class="adherents-cta__panel">
+        <div class="adherents-cta__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+        </div>
+        <div class="adherents-cta__body">
+          <h2 class="adherents-cta__title" id="titre-adherents">Espace adhérents</h2>
+          <p>Compositions du week-end, infos pratiques et vie du club : tout ce qu’il faut savoir, en un coup d’œil, même sur votre téléphone.</p>
+        </div>
+        <div class="adherents-cta__actions">
+          <a class="btn btn--primary" href="/adherents">Accéder à l’espace</a>
+          <a class="btn btn--outline" href="/compositions">Compositions du week-end</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>

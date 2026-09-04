@@ -1,0 +1,89 @@
+<%- include('partials/head', { pageTitle: 'Modifier l’équipe ' + equipe.nom }) %>
+<%- include('partials/nav', { active: 'equipes' }) %>
+
+<h1 class="admin-title">Modifier l’équipe — <%= equipe.nom %></h1>
+<p class="admin-subtitle">Les joueurs apparaissent dans l’effectif public de l’équipe.</p>
+
+<form class="admin-form" method="post" action="/admin/equipes/<%= equipe.id %>" enctype="multipart/form-data">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="nom">Nom de l’équipe *</label>
+      <input class="field__input" id="nom" name="nom" type="text" value="<%= equipe.nom %>" required>
+    </div>
+    <div class="field">
+      <label class="field__label" for="categorie">Catégorie</label>
+      <input class="field__input" id="categorie" name="categorie" type="text" value="<%= equipe.categorie %>">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="tagline">Slogan / accroche</label>
+    <input class="field__input" id="tagline" name="tagline" type="text" value="<%= equipe.tagline || '' %>">
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="description">Présentation</label>
+    <textarea class="field__input" id="description" name="description" rows="4"><%= equipe.description || '' %></textarea>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="entraineur">Entraîneur</label>
+      <input class="field__input" id="entraineur" name="entraineur" type="text" value="<%= equipe.entraineur || '' %>">
+    </div>
+    <div class="field">
+      <label class="field__label" for="entraineurAdj">Staff complémentaire</label>
+      <input class="field__input" id="entraineurAdj" name="entraineurAdj" type="text" value="<%= equipe.entraineurAdj || '' %>">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="image">Photo de l’équipe</label>
+    <% if (equipe.image) { %><p class="field__hint">Image actuelle : <img src="<%= equipe.image %>" alt="" style="height:56px;vertical-align:middle;border-radius:6px;margin-left:6px;"></p><% } %>
+    <input class="field__input" id="image" name="image" type="file" accept="image/*">
+  </div>
+
+  <h2 class="admin-form__section">Effectif</h2>
+  <div class="roster-editor" id="rosterEditor">
+    <% const rows = (equipe.joueurs && equipe.joueurs.length) ? equipe.joueurs : [{numero:'',nom:'',poste:''}]; %>
+    <% rows.forEach(j => { %>
+    <div class="roster-editor__row">
+      <input class="field__input roster-editor__num" name="joueurs[numero]" type="text" placeholder="N°" value="<%= j.numero %>">
+      <input class="field__input" name="joueurs[nom]" type="text" placeholder="Nom du joueur" value="<%= j.nom %>">
+      <input class="field__input roster-editor__poste" name="joueurs[poste]" type="text" placeholder="Poste" value="<%= j.poste %>">
+      <button type="button" class="btn btn--danger btn--sm roster-editor__remove" aria-label="Retirer cette ligne">×</button>
+    </div>
+    <% }) %>
+  </div>
+  <button type="button" class="btn btn--outline btn--sm" id="addRosterRow">+ Ajouter un joueur</button>
+
+  <% if (equipe.slug === 'n3') { %>
+  <h2 class="admin-form__section">Statistiques de la N3</h2>
+  <p class="field__hint">Affichées sur la page N3. <label class="check"><input type="checkbox" name="stats" checked> Activer les statistiques</label></p>
+  <div class="form-row">
+    <div class="field"><label class="field__label">Matchs joués</label><input class="field__input" name="mj" type="number" min="0" value="<%= equipe.stats ? equipe.stats.mj : 0 %>"></div>
+    <div class="field"><label class="field__label">Victoires</label><input class="field__input" name="g" type="number" min="0" value="<%= equipe.stats ? equipe.stats.g : 0 %>"></div>
+    <div class="field"><label class="field__label">Nuls</label><input class="field__input" name="n" type="number" min="0" value="<%= equipe.stats ? equipe.stats.n : 0 %>"></div>
+    <div class="field"><label class="field__label">Défaites</label><input class="field__input" name="p" type="number" min="0" value="<%= equipe.stats ? equipe.stats.p : 0 %>"></div>
+    <div class="field"><label class="field__label">Buts marqués</label><input class="field__input" name="bp" type="number" min="0" value="<%= equipe.stats ? equipe.stats.bp : 0 %>"></div>
+    <div class="field"><label class="field__label">Buts encaissés</label><input class="field__input" name="bc" type="number" min="0" value="<%= equipe.stats ? equipe.stats.bc : 0 %>"></div>
+  </div>
+  <div class="form-row">
+    <div class="field"><label class="field__label">Meilleur buteur</label><input class="field__input" name="meilleurButeur" type="text" value="<%= equipe.stats ? equipe.stats.meilleurButeur : '' %>"></div>
+    <div class="field"><label class="field__label">Meilleur gardien</label><input class="field__input" name="meilleurGardien" type="text" value="<%= equipe.stats ? equipe.stats.meilleurGardien : '' %>"></div>
+  </div>
+  <% } %>
+
+  <div class="form-checks">
+    <label class="check"><input type="checkbox" name="publie" <%= equipe.publie !== false ? 'checked' : '' %>> Équipe visible sur le site</label>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn--primary" type="submit">Enregistrer</button>
+    <a class="btn btn--outline" href="/admin/equipes">Annuler</a>
+  </div>
+</form>
+
+<%- include('partials/foot') %>

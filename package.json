@@ -1,0 +1,31 @@
+{
+  "name": "hc-dinan-quevert",
+  "version": "1.0.0",
+  "description": "Site internet officiel du Hockey Club Dinan-Quévert (rink hockey) — Quévert / Dinan, Côtes-d'Armor.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check lib/db.js && node --check lib/seed.js && node --check lib/util.js && node --check lib/github.js && node --check middleware/auth.js"
+  },
+  "keywords": [
+    "rink-hockey",
+    "club",
+    "association",
+    "dinan",
+    "quevert",
+    "bretagne"
+  ],
+  "author": "HC Dinan-Quévert",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "multer": "^2.3.0"
+  }
+}

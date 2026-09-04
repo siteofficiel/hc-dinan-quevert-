@@ -1,0 +1,55 @@
+<%- include('partials/head', { pageTitle: article.titre, ogImage: article.image }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <article class="article">
+    <header class="article__header">
+      <div class="container article__header-inner">
+        <a class="back-link" href="/actualites">← Retour aux actualités</a>
+        <div class="news-card__meta article__meta">
+          <span class="chip"><%= article.categorie %></span>
+          <time datetime="<%= article.dateISO %>"><%= util.formatDateLong(article.dateISO) %></time>
+        </div>
+        <h1 class="article__title"><%= article.titre %></h1>
+      </div>
+    </header>
+
+    <% if (article.image) { %>
+    <div class="container article__figure">
+      <img src="<%= article.image %>" alt="<%= article.titre %>" width="1200" height="675">
+    </div>
+    <% } %>
+
+    <div class="container article__layout">
+      <div class="article__body prose">
+        <% String(article.contenu || '').split(/\n\s*\n/).forEach(p => { %>
+        <p><%= p.trim() %></p>
+        <% }) %>
+
+        <div class="share">
+          <span class="share__label">Partager :</span>
+          <a class="share__btn" href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent('https://www.hcdinan-quevert.fr/actualites/' + article.slug) %>" target="_blank" rel="noopener">Facebook</a>
+          <a class="share__btn" href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent('https://www.hcdinan-quevert.fr/actualites/' + article.slug) %>&text=<%= encodeURIComponent(article.titre) %>" target="_blank" rel="noopener">X</a>
+          <a class="share__btn" href="https://wa.me/?text=<%= encodeURIComponent(article.titre + ' https://www.hcdinan-quevert.fr/actualites/' + article.slug) %>" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+
+      <% if (autres.length) { %>
+      <aside class="article__aside">
+        <h2 class="mini-title">À lire aussi</h2>
+        <% autres.forEach(a => { %>
+        <a class="side-news" href="/actualites/<%= a.slug %>">
+          <img src="<%= a.image || '/img/hero.jpg' %>" alt="" loading="lazy" width="96" height="64">
+          <span>
+            <span class="side-news__title"><%= a.titre %></span>
+            <span class="side-news__date"><%= util.formatDateShort(a.dateISO) %></span>
+          </span>
+        </a>
+        <% }) %>
+      </aside>
+      <% } %>
+    </div>
+  </article>
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,43 @@
+<%- include('partials/head', { pageTitle: 'Matchs & résultats' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'L’agenda du club', title: 'Matchs & résultats', subtitle: 'Tous les rendez-vous et les scores du HC Dinan-Quévert.' }) %>
+
+  <% const matchs = db.get('matchs').filter(m => m.publie).sort((a,b) => a.dateISO.localeCompare(b.dateISO)); %>
+  <% const aVenir = matchs.filter(m => util.isFuture(m)); %>
+
+  <section class="section" aria-labelledby="titre-avenir">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">À venir</p>
+          <h2 class="section-head__title" id="titre-avenir">Prochains matchs</h2>
+        </div>
+      </div>
+      <% if (aVenir.length) { %>
+      <div class="match-list">
+        <% aVenir.forEach(m => { %><%- include('partials/match-card', { m }) %><% }) %>
+      </div>
+      <% } else { %><p class="empty-note">Aucun match programmé pour le moment.</p><% } %>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="titre-resultats">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">Les scores</p>
+          <h2 class="section-head__title" id="titre-resultats">Résultats</h2>
+        </div>
+      </div>
+      <% if (resultats.length) { %>
+      <div class="result-grid result-grid--wide">
+        <% resultats.forEach(m => { %><%- include('partials/result-card', { m }) %><% }) %>
+      </div>
+      <% } else { %><p class="empty-note">Les résultats seront publiés ici au fil de la saison.</p><% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

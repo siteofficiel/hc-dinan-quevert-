@@ -1,0 +1,28 @@
+<%- include('partials/head', { pageTitle: 'Connexion administration' }) %>
+
+<main id="contenu" class="login">
+  <div class="login__card">
+    <div class="login__brand">
+      <img src="/img/logo.jpg" alt="Logo <%= site.nomCourt %>" width="64" height="56">
+      <h1 class="login__title">Espace administrateur</h1>
+      <p class="login__sub"><%= site.nomCourt %></p>
+    </div>
+    <% if (error) { %><p class="login__error" role="alert"><%= error %></p><% } %>
+    <form method="post" action="/admin/login" class="login__form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="field">
+        <label class="field__label" for="username">Identifiant</label>
+        <input class="field__input" id="username" name="username" type="text" autocomplete="username" required autofocus>
+      </div>
+      <div class="field">
+        <label class="field__label" for="password">Mot de passe</label>
+        <input class="field__input" id="password" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn--primary btn--block" type="submit">Se connecter</button>
+    </form>
+    <a class="login__back" href="/">← Retour au site</a>
+  </div>
+</main>
+
+</body>
+</html>

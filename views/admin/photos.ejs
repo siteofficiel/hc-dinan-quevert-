@@ -1,0 +1,54 @@
+<%- include('partials/head', { pageTitle: 'Gérer les photos' }) %>
+<%- include('partials/nav', { active: 'photos' }) %>
+
+<h1 class="admin-title">Photos &amp; albums</h1>
+<p class="admin-subtitle">Créez un album, puis ajoutez vos photos à l’intérieur.</p>
+
+<form class="admin-form admin-form--inline" method="post" action="/admin/albums">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <input class="field__input" name="nom" type="text" placeholder="Nom du nouvel album (ex. Tournoi de Pâques)" required>
+  <input class="field__input" name="description" type="text" placeholder="Description (facultatif)">
+  <button class="btn btn--primary" type="submit">Créer l’album</button>
+</form>
+
+<% albums.forEach(al => { %>
+<% const albumPhotos = db.get('photos').filter(p => String(p.albumId) === String(al.id)); %>
+<section class="album-admin" id="album-<%= al.id %>">
+  <header class="album-admin__head">
+    <form class="album-admin__rename" method="post" action="/admin/albums/<%= al.id %>">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input class="field__input" name="nom" type="text" value="<%= al.nom %>" aria-label="Nom de l’album">
+      <button class="btn btn--outline btn--sm" type="submit">Renommer</button>
+    </form>
+    <span class="album-admin__count"><%= albumPhotos.length %> photo<%= albumPhotos.length > 1 ? 's' : '' %></span>
+    <form method="post" action="/admin/albums/<%= al.id %>/supprimer" onsubmit="return confirm('Supprimer cet album et toutes ses photos ?');">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button class="btn btn--danger btn--sm" type="submit">Supprimer l’album</button>
+    </form>
+  </header>
+
+  <form class="admin-form admin-form--inline" method="post" action="/admin/albums/<%= al.id %>/photos" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input class="field__input" name="photos" type="file" accept="image/*" multiple required>
+    <button class="btn btn--primary" type="submit">Ajouter des photos</button>
+  </form>
+
+  <% if (albumPhotos.length) { %>
+  <div class="admin-photo-grid">
+    <% albumPhotos.forEach(p => { %>
+    <figure class="admin-photo">
+      <img src="<%= p.fichier %>" alt="" loading="lazy" width="180" height="120">
+      <form method="post" action="/admin/photos/<%= p.id %>/supprimer" onsubmit="return confirm('Supprimer cette photo ?');">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="admin-photo__delete" type="submit" aria-label="Supprimer la photo">×</button>
+      </form>
+    </figure>
+    <% }) %>
+  </div>
+  <% } else { %>
+  <p class="empty-note">Aucune photo dans cet album.</p>
+  <% } %>
+</section>
+<% }) %>
+
+<%- include('partials/foot') %>

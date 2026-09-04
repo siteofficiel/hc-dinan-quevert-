@@ -1,0 +1,58 @@
+<%- include('partials/head', { pageTitle: 'Actualités' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'La vie du club', title: 'Actualités', subtitle: 'Résultats, événements, vie associative : tout le HC Dinan-Quévert.' }) %>
+
+  <section class="section">
+    <div class="container">
+      <nav class="tabs" aria-label="Rubriques">
+        <a class="tab <%= tab === 'actualites' ? 'is-active' : '' %>" href="/actualites?tab=actualites">Actualités du club</a>
+        <a class="tab <%= tab === 'resultats' ? 'is-active' : '' %>" href="/actualites?tab=resultats">Résultats</a>
+      </nav>
+
+      <% if (tab === 'actualites') { %>
+      <div class="chips" role="group" aria-label="Filtrer par catégorie">
+        <a class="chip chip--filter <%= !cat ? 'is-active' : '' %>" href="/actualites?tab=actualites">Tout</a>
+        <% categories.forEach(c => { %>
+        <a class="chip chip--filter <%= cat === c ? 'is-active' : '' %>" href="/actualites?tab=actualites&cat=<%= encodeURIComponent(c) %>"><%= c %></a>
+        <% }) %>
+      </div>
+
+      <% if (actus.length) { %>
+      <div class="news-grid news-grid--list">
+        <% actus.forEach(a => { %>
+        <article class="news-card">
+          <a class="news-card__media" href="/actualites/<%= a.slug %>" tabindex="-1" aria-hidden="true">
+            <img src="<%= a.image || '/img/hero.jpg' %>" alt="" loading="lazy" width="480" height="300">
+          </a>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="chip"><%= a.categorie %></span>
+              <time datetime="<%= a.dateISO %>"><%= util.formatDateLong(a.dateISO) %></time>
+            </div>
+            <h2 class="news-card__title"><a href="/actualites/<%= a.slug %>"><%= a.titre %></a></h2>
+            <p class="news-card__excerpt"><%= util.excerpt(a.resume || a.contenu, 150) %></p>
+            <a class="link-arrow" href="/actualites/<%= a.slug %>">Lire l’article</a>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="empty-note">Aucune actualité dans cette catégorie pour le moment.</p>
+      <% } %>
+
+      <% } else { %>
+      <% if (resultats.length) { %>
+      <div class="result-grid result-grid--wide">
+        <% resultats.forEach(m => { %><%- include('partials/result-card', { m }) %><% }) %>
+      </div>
+      <% } else { %>
+      <p class="empty-note">Les résultats de la saison seront publiés ici.</p>
+      <% } %>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

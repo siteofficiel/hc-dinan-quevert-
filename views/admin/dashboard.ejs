@@ -1,0 +1,41 @@
+<%- include('partials/head', { pageTitle: 'Tableau de bord' }) %>
+<%- include('partials/nav', { active: 'dashboard' }) %>
+
+<h1 class="admin-title">Tableau de bord</h1>
+<p class="admin-subtitle">Bienvenue ! Choisissez une section ci-contre pour gérer le contenu du site.</p>
+
+<div class="dash-stats">
+  <a class="dash-stat" href="/admin/actualites">
+    <span class="dash-stat__value"><%= counts.actualites %></span>
+    <span class="dash-stat__label">Actualités</span>
+  </a>
+  <a class="dash-stat" href="/admin/matchs">
+    <span class="dash-stat__value"><%= counts.matchs %></span>
+    <span class="dash-stat__label">Matchs &amp; résultats</span>
+  </a>
+  <a class="dash-stat" href="/admin/compositions">
+    <span class="dash-stat__value"><%= counts.publiees %> / <%= counts.compositions %></span>
+    <span class="dash-stat__label">Compositions publiées</span>
+  </a>
+  <a class="dash-stat" href="/admin/photos">
+    <span class="dash-stat__value"><%= counts.photos %></span>
+    <span class="dash-stat__label">Photos · <%= counts.albums %> albums</span>
+  </a>
+  <a class="dash-stat" href="/admin/equipes">
+    <span class="dash-stat__value"><%= counts.equipes %></span>
+    <span class="dash-stat__label">Équipes</span>
+  </a>
+</div>
+
+<div class="dash-help">
+  <h2 class="dash-help__title">Comment ça marche ?</h2>
+  <ol class="dash-help__list">
+    <li><strong>Actualités</strong> — publiez les infos du club (événements, tournois, annonces…).</li>
+    <li><strong>Résultats &amp; matchs</strong> — ajoutez un match avec ou sans score ; il apparaît automatiquement sur l’accueil et la page des résultats.</li>
+    <li><strong>Compositions</strong> — composez l’équipe du week-end puis cliquez sur <em>Publier</em> : visible immédiatement dans l’espace adhérents.</li>
+    <li><strong>Photos</strong> — créez un album puis ajoutez vos photos.</li>
+    <li><strong>Équipes</strong> — modifiez les effectifs, entraîneurs et présentations.</li>
+  </ol>
+</div>
+
+<%- include('partials/foot') %>

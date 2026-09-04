@@ -1,0 +1,72 @@
+<%- include('../partials/head', { pageTitle: 'Espace adhérents' }) %>
+<%- include('../partials/header') %>
+
+<main id="contenu">
+  <%- include('../partials/page-hero', { kicker: 'Réservé aux licenciés & parents', title: 'Espace adhérents', subtitle: 'Tout ce qu’il faut savoir, simplement, quand vous en avez besoin.' }) %>
+
+  <section class="section">
+    <div class="container">
+      <div class="quick-actions">
+        <a class="quick-action quick-action--primary" href="/compositions">
+          <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+          <span class="quick-action__title">Compositions du week-end</span>
+          <span class="quick-action__text">Où je joue, contre qui, à quelle heure et avec qui ?</span>
+        </a>
+        <a class="quick-action" href="/club#titre-infos">
+          <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span class="quick-action__title">Infos pratiques</span>
+          <span class="quick-action__text">Adresse, horaires, contacts et accès à la salle.</span>
+        </a>
+        <a class="quick-action" href="/photos">
+          <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m5 19 5-5 3 3 3-3 3 3"/></svg>
+          <span class="quick-action__title">Photos</span>
+          <span class="quick-action__text">Retrouvez les albums du club.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="titre-comp">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">Cette semaine</p>
+          <h2 class="section-head__title" id="titre-comp">Compositions du week-end</h2>
+        </div>
+        <a class="link-arrow" href="/compositions">Tout voir</a>
+      </div>
+      <% const aVenir = comps.filter(c => util.isUpcoming(c.dateISO)); %>
+      <% if (aVenir.length) { %>
+        <% aVenir.forEach(c => { %><%- include('../partials/comp-card', { c }) %><% }) %>
+      <% } else { %>
+      <p class="empty-note">Aucune composition publiée pour le moment. Elles apparaîtront ici dès leur publication par les responsables d’équipe.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="titre-pra">
+    <div class="container two-col">
+      <div>
+        <p class="section-head__kicker">Rappels</p>
+        <h2 class="section-head__title" id="titre-pra">À retenir</h2>
+        <div class="prose">
+          <p><strong>Certificat médical</strong> : obligatoire pour toute licence (sport sur patins).</p>
+          <p><strong>Équipement</strong> : patins quad, protections et crosse ; prêt possible pour les débutants à l’école de patinage.</p>
+          <p><strong>Convocation</strong> : les compositions sont publiées chaque semaine, pensez à les consulter avant le week-end.</p>
+        </div>
+      </div>
+      <div>
+        <p class="section-head__kicker">Contact</p>
+        <h2 class="section-head__title">Vos interlocuteurs</h2>
+        <div class="prose">
+          <p><strong>Secrétariat &amp; licences</strong><br><%= site.email %></p>
+          <p><strong>Siège du club</strong><br><%= site.adresse %></p>
+          <p><strong>Salle des matchs</strong><br><%= site.salle %></p>
+          <p><strong>Téléphone</strong><br><%= site.telephone %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,80 @@
+<%- include('partials/head', { pageTitle: editing ? 'Modifier le match' : 'Nouveau match / résultat' }) %>
+<%- include('partials/nav', { active: 'matchs' }) %>
+
+<h1 class="admin-title"><%= editing ? 'Modifier le match' : 'Nouveau match / résultat' %></h1>
+<p class="admin-subtitle">Laissez le score vide pour un match à venir ; remplissez-le pour publier un résultat.</p>
+
+<form class="admin-form" method="post" action="<%= editing ? '/admin/matchs/' + match.id : '/admin/matchs' %>">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="equipeSlug">Équipe *</label>
+      <select class="field__input" id="equipeSlug" name="equipeSlug" required>
+        <% equipes.forEach(e => { %>
+        <option value="<%= e.slug %>" <%= match.equipeSlug === e.slug ? 'selected' : '' %>><%= e.nom %> (<%= e.categorie %>)</option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="field">
+      <label class="field__label" for="competition">Compétition</label>
+      <input class="field__input" id="competition" name="competition" type="text" value="<%= match.competition || 'Championnat' %>">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="adversaire">Adversaire *</label>
+      <input class="field__input" id="adversaire" name="adversaire" type="text" value="<%= match.adversaire || '' %>" required>
+    </div>
+    <div class="field">
+      <label class="field__label">Domicile / extérieur</label>
+      <div class="seg">
+        <label class="seg__opt"><input type="radio" name="domicile" value="true" <%= match.domicile !== false ? 'checked' : '' %>> À domicile</label>
+        <label class="seg__opt"><input type="radio" name="domicile" value="false" <%= match.domicile === false ? 'checked' : '' %>> À l’extérieur</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="dateISO">Date *</label>
+      <input class="field__input" id="dateISO" name="dateISO" type="date" value="<%= match.dateISO || util.todayISO() %>" required>
+    </div>
+    <div class="field">
+      <label class="field__label" for="heure">Heure</label>
+      <input class="field__input" id="heure" name="heure" type="time" value="<%= match.heure || '20:30' %>">
+    </div>
+    <div class="field">
+      <label class="field__label" for="lieu">Lieu</label>
+      <input class="field__input" id="lieu" name="lieu" type="text" value="<%= match.lieu || 'Salle Némée, Dinan' %>">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="scorePour">Score Quévert</label>
+      <input class="field__input" id="scorePour" name="scorePour" type="number" min="0" value="<%= match.scorePour !== null && match.scorePour !== undefined ? match.scorePour : '' %>" placeholder="—">
+    </div>
+    <div class="field">
+      <label class="field__label" for="scoreContre">Score adversaire</label>
+      <input class="field__input" id="scoreContre" name="scoreContre" type="number" min="0" value="<%= match.scoreContre !== null && match.scoreContre !== undefined ? match.scoreContre : '' %>" placeholder="—">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="resume">Résumé (optionnel)</label>
+    <textarea class="field__input" id="resume" name="resume" rows="3"><%= match.resume || '' %></textarea>
+  </div>
+
+  <div class="form-checks">
+    <label class="check"><input type="checkbox" name="publie" <%= match.publie !== false ? 'checked' : '' %>> Publier (visible sur le site)</label>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn--primary" type="submit">Enregistrer</button>
+    <a class="btn btn--outline" href="/admin/matchs">Annuler</a>
+  </div>
+</form>
+
+<%- include('partials/foot') %>

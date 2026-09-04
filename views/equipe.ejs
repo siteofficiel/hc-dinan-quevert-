@@ -1,0 +1,64 @@
+<%- include('partials/head', { pageTitle: equipe.nom }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: equipe.categorie, title: 'Équipe ' + equipe.nom, subtitle: equipe.tagline, image: (equipe.image || '/img/hero.jpg') }) %>
+
+  <section class="section" aria-label="Présentation de l’équipe <%= equipe.nom %>">
+    <div class="container team-detail">
+      <div class="prose">
+        <h2 class="section-head__title">La présentation</h2>
+        <p><%= equipe.description %></p>
+        <div class="staff-box">
+          <h3 class="staff-box__title">Encadrement</h3>
+          <p><strong><%= equipe.entraineur %></strong></p>
+          <% if (equipe.entraineurAdj) { %><p><%= equipe.entraineurAdj %></p><% } %>
+        </div>
+      </div>
+
+      <aside class="team-side">
+        <h3 class="team-side__title">Effectif</h3>
+        <% if (equipe.joueurs && equipe.joueurs.length) { %>
+        <ul class="roster">
+          <% equipe.joueurs.forEach(j => { %>
+          <li class="roster__item">
+            <span class="roster__num"><%= j.numero %></span>
+            <span class="roster__name"><%= j.nom %></span>
+            <span class="roster__poste"><%= j.poste %></span>
+          </li>
+          <% }) %>
+        </ul>
+        <% } else { %>
+        <p class="empty-note">Effectif à compléter.</p>
+        <% } %>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-label="Matchs de l’équipe <%= equipe.nom %>">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">L’agenda</p>
+          <h2 class="section-head__title">Prochains matchs</h2>
+        </div>
+      </div>
+      <% if (prochains.length) { %>
+      <div class="match-list">
+        <% prochains.forEach(m => { %><%- include('partials/match-card', { m }) %><% }) %>
+      </div>
+      <% } else { %><p class="empty-note">Aucun match programmé pour le moment.</p><% } %>
+
+      <% if (resultats.length) { %>
+      <div class="section-head section-head--mt">
+        <h2 class="section-head__title">Derniers résultats</h2>
+      </div>
+      <div class="result-grid">
+        <% resultats.forEach(m => { %><%- include('partials/result-card', { m }) %><% }) %>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

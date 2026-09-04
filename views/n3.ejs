@@ -1,0 +1,160 @@
+<%- include('partials/head', { pageTitle: 'Équipe N3', bodyClass: 'page-n3' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <section class="n3-hero" style="background-image:url('<%= equipe.image || '/img/n3-team.webp' %>')">
+    <div class="n3-hero__overlay"></div>
+    <div class="container n3-hero__inner">
+      <p class="n3-hero__kicker">Nationale 3 · L’équipe qui monte</p>
+      <h1 class="n3-hero__title">N3</h1>
+      <p class="n3-hero__sub"><%= equipe.tagline %></p>
+      <div class="n3-hero__actions">
+        <a class="btn btn--gold" href="#effectif">Voir l’effectif</a>
+        <a class="btn btn--ghost" href="/photos/<%= album ? album.slug : 'photos' %>">Galerie photos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <% if (equipe.stats) { const s = equipe.stats; %>
+  <section class="n3-stats" aria-label="Statistiques de la N3">
+    <div class="container n3-stats__grid">
+      <div class="n3-stat"><span class="n3-stat__value"><%= s.mj %></span><span class="n3-stat__label">Matchs joués</span></div>
+      <div class="n3-stat"><span class="n3-stat__value"><%= s.g %></span><span class="n3-stat__label">Victoires</span></div>
+      <div class="n3-stat"><span class="n3-stat__value"><%= s.bp %></span><span class="n3-stat__label">Buts marqués</span></div>
+      <div class="n3-stat"><span class="n3-stat__value"><%= s.bc %></span><span class="n3-stat__label">Buts encaissés</span></div>
+      <div class="n3-stat"><span class="n3-stat__value n3-stat__value--sm"><%= s.meilleurButeur %></span><span class="n3-stat__label">Meilleur buteur</span></div>
+      <div class="n3-stat"><span class="n3-stat__value n3-stat__value--sm"><%= s.meilleurGardien %></span><span class="n3-stat__label">Meilleur gardien</span></div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- PRÉSENTATION -->
+  <section class="section" aria-labelledby="n3-presentation">
+    <div class="container two-col">
+      <div>
+        <p class="section-head__kicker section-head__kicker--gold">La réserve compétitive</p>
+        <h2 class="section-head__title" id="n3-presentation">Jeunesse et expérience</h2>
+      </div>
+      <div class="prose">
+        <p><%= equipe.description %></p>
+        <p>Véritable pont entre la formation et l’équipe fanion, la N3 fait grandir les jeunes pousses quévertoises aux côtés de cadres expérimentés. Un état d’esprit de compétiteur, des ambitions élevées et l’envie de faire vibrer les supporters.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATCHS -->
+  <section class="section section--tint" aria-labelledby="n3-matchs">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">L’agenda de la N3</p>
+          <h2 class="section-head__title" id="n3-matchs">Matchs &amp; résultats</h2>
+        </div>
+      </div>
+      <div class="split-match">
+        <div>
+          <h3 class="mini-title">Prochains matchs</h3>
+          <% if (prochains.length) { %>
+          <div class="match-list">
+            <% prochains.forEach(m => { %><%- include('partials/match-card', { m }) %><% }) %>
+          </div>
+          <% } else { %><p class="empty-note">Aucun match programmé.</p><% } %>
+        </div>
+        <div>
+          <h3 class="mini-title">Derniers résultats</h3>
+          <% if (resultats.length) { %>
+          <div class="result-grid">
+            <% resultats.forEach(m => { %><%- include('partials/result-card', { m }) %><% }) %>
+          </div>
+          <% } else { %><p class="empty-note">Les résultats seront publiés ici.</p><% } %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASSEMENT -->
+  <section class="section" aria-labelledby="n3-classement">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">Le championnat</p>
+          <h2 class="section-head__title" id="n3-classement">Classement</h2>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table class="standing-table">
+          <caption class="visually-hidden">Classement du championnat — Nationale 3</caption>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col" class="ta-l">Équipe</th><th scope="col">Pts</th><th scope="col">J</th><th scope="col">G</th><th scope="col">N</th><th scope="col">P</th><th scope="col">+/-</th></tr>
+          </thead>
+          <tbody>
+            <% classement.forEach(r => { %>
+            <tr class="<%= /quevert|dinan/i.test(r.equipe) ? 'is-ours' : '' %>">
+              <td><span class="pos pos--<%= r.pos <= 3 ? 'top' : 'normal' %>"><%= r.pos %></span></td>
+              <td class="ta-l"><%= r.equipe %></td>
+              <td><strong><%= r.pts %></strong></td>
+              <td><%= r.j %></td>
+              <td><%= r.g %></td>
+              <td><%= r.n %></td>
+              <td><%= r.p %></td>
+              <td><%= r.bp - r.bc > 0 ? '+' : '' %><%= r.bp - r.bc %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Classement de démonstration — à mettre à jour depuis l’administration.</p>
+    </div>
+  </section>
+
+  <!-- EFFECTIF -->
+  <section class="section section--dark" id="effectif" aria-labelledby="n3-effectif">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">Le groupe</p>
+          <h2 class="section-head__title section-head__title--white" id="n3-effectif">L’effectif</h2>
+        </div>
+      </div>
+      <div class="player-grid">
+        <% (equipe.joueurs || []).forEach(j => { %>
+        <div class="player-card">
+          <span class="player-card__num"><%= j.numero %></span>
+          <span class="player-card__name"><%= j.nom %></span>
+          <span class="player-card__poste"><%= j.poste %></span>
+        </div>
+        <% }) %>
+      </div>
+      <div class="staff-strip">
+        <span class="staff-strip__label">Staff</span>
+        <span class="staff-strip__name"><%= equipe.entraineur %></span>
+        <% if (equipe.entraineurAdj) { %><span class="staff-strip__name"><%= equipe.entraineurAdj %></span><% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE N3 -->
+  <section class="section" aria-labelledby="n3-galerie">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker section-head__kicker--gold">En images</p>
+          <h2 class="section-head__title" id="n3-galerie">Galerie N3</h2>
+        </div>
+        <a class="link-arrow" href="/photos/<%= album ? album.slug : 'photos' %>">Voir l’album complet</a>
+      </div>
+      <% if (photos.length) { %>
+      <div class="gallery-grid" id="galleryN3">
+        <% photos.slice(0, 6).forEach((p, i) => { %>
+        <a class="gallery-item" href="<%= p.fichier %>" data-lightbox="n3" data-alt="<%= p.legende || ('Photo N3 ' + (i+1)) %>" data-index="<%= i %>">
+          <img src="<%= p.fichier %>" alt="<%= p.legende || 'Photo de la N3' %>" loading="lazy" width="480" height="320">
+        </a>
+        <% }) %>
+      </div>
+      <% } else { %><p class="empty-note">La galerie N3 arrive bientôt.</p><% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

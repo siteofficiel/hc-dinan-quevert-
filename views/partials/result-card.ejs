@@ -1,0 +1,20 @@
+<% // Carte "résultat" : m = match avec score %>
+<% const sp = m.scorePour, sc = m.scoreContre;
+   let issue = 'nul';
+   if (sp !== null && sp !== undefined) { if (sp > sc) issue = 'victoire'; else if (sp < sc) issue = 'defaite'; } %>
+<article class="result-card result-card--<%= issue %>">
+  <header class="result-card__head">
+    <span class="chip"><%= m.competition %></span>
+    <time datetime="<%= m.dateISO %>"><%= util.formatDateShort(m.dateISO) %></time>
+  </header>
+  <div class="result-card__teams">
+    <span class="team"><span class="team__label">Quévert</span><strong><%= m.equipeLabel %></strong></span>
+    <span class="score"><b><%= sp %></b><i>–</i><b><%= sc %></b></span>
+    <span class="team"><span class="team__label">Adversaire</span><strong><%= m.adversaire %></strong></span>
+  </div>
+  <p class="result-card__meta">
+    <span class="badge-issue badge-issue--<%= issue %>"><%= issue === 'victoire' ? 'Victoire' : (issue === 'defaite' ? 'Défaite' : 'Match nul') %></span>
+    <%= m.domicile ? 'à domicile' : 'à l’extérieur' %> · <%= m.lieu %>
+  </p>
+  <% if (m.resume) { %><p class="result-card__resume"><%= util.excerpt(m.resume, 140) %></p><% } %>
+</article>

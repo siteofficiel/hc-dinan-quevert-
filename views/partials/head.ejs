@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% const titre = (pageTitle && pageTitle !== 'Accueil') ? pageTitle + ' · ' + site.nomCourt : site.nomCourt + ' — ' + site.sousTitre; %>
+  <% const desc = typeof metaDescription !== 'undefined' ? metaDescription : site.presentation; %>
+  <title><%= titre %></title>
+  <meta name="description" content="<%= desc %>">
+  <link rel="canonical" href="<%= 'https://' + (site.domain || 'www.hcdinan-quevert.fr') + path %>">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="<%= site.nomCourt %>">
+  <meta property="og:title" content="<%= titre %>">
+  <meta property="og:description" content="<%= desc %>">
+  <meta property="og:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : '/img/hero.jpg' %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preload" href="/fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsOrganization",
+    "name": "<%= site.nomComplet %>",
+    "alternateName": "<%= site.nomCourt %>",
+    "url": "https://www.hcdinan-quevert.fr",
+    "logo": "/img/logo.jpg",
+    "sport": "Rink Hockey",
+    "foundingDate": "1987",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Quévert",
+      "postalCode": "22100",
+      "addressRegion": "Bretagne",
+      "addressCountry": "FR"
+    },
+    "areaServed": ["Dinan", "Quévert", "Côtes-d'Armor", "Bretagne"],
+    "sameAs": ["<%= site.facebook %>", "<%= site.instagram %>", "<%= site.youtube %>"]
+  }
+  </script>
+</head>
+<body class="<%= typeof bodyClass !== 'undefined' ? bodyClass : '' %>">
+<a class="skip-link" href="#contenu">Aller au contenu</a>

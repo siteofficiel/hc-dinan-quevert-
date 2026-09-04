@@ -1,0 +1,61 @@
+<%- include('partials/head', { pageTitle: editing ? 'Modifier l’actualité' : 'Nouvelle actualité' }) %>
+<%- include('partials/nav', { active: 'actualites' }) %>
+
+<h1 class="admin-title"><%= editing ? 'Modifier l’actualité' : 'Nouvelle actualité' %></h1>
+<p class="admin-subtitle">Les champs marqués d’une étoile sont obligatoires.</p>
+
+<form class="admin-form" method="post" action="<%= editing ? '/admin/actualites/' + article.id : '/admin/actualites' %>" enctype="multipart/form-data">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="field">
+    <label class="field__label" for="titre">Titre *</label>
+    <input class="field__input" id="titre" name="titre" type="text" value="<%= article.titre || '' %>" required>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="categorie">Catégorie</label>
+      <select class="field__input" id="categorie" name="categorie">
+        <% ['Vie du club', 'Événements', 'Jeunes', 'N3'].forEach(c => { %>
+        <option value="<%= c %>" <%= article.categorie === c ? 'selected' : '' %>><%= c %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="field">
+      <label class="field__label" for="dateISO">Date de publication *</label>
+      <input class="field__input" id="dateISO" name="dateISO" type="date" value="<%= article.dateISO || util.todayISO() %>" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="resume">Chapeau (affiché dans les listes)</label>
+    <textarea class="field__input" id="resume" name="resume" rows="2"><%= article.resume || '' %></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="contenu">Contenu *</label>
+    <textarea class="field__input" id="contenu" name="contenu" rows="10" required><%= article.contenu || '' %></textarea>
+    <p class="field__hint">Séparez les paragraphes par une ligne vide.</p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="image">Image principale</label>
+    <% if (article.image) { %>
+    <p class="field__hint">Image actuelle : <img src="<%= article.image %>" alt="" style="height:56px;vertical-align:middle;border-radius:6px;margin-left:6px;"></p>
+    <% } %>
+    <input class="field__input" id="image" name="image" type="file" accept="image/*">
+    <p class="field__hint">Format paysage conseillé (ratio 16:9 ou 3:2).</p>
+  </div>
+
+  <div class="form-checks">
+    <label class="check"><input type="checkbox" name="publie" <%= article.publie !== false ? 'checked' : '' %>> Publier (visible sur le site)</label>
+    <label class="check"><input type="checkbox" name="epingle" <%= article.epingle ? 'checked' : '' %>> Mettre à la une</label>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn--primary" type="submit">Enregistrer</button>
+    <a class="btn btn--outline" href="/admin/actualites">Annuler</a>
+  </div>
+</form>
+
+<%- include('partials/foot') %>

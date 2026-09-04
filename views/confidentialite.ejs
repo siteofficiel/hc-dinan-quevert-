@@ -1,0 +1,23 @@
+<%- include('partials/head', { pageTitle: 'Politique de confidentialité' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'Informations', title: 'Politique de confidentialité' }) %>
+  <section class="section">
+    <div class="container prose prose--narrow">
+      <h2>Données personnelles</h2>
+      <p>Le <%= site.nomCourt %> traite les données personnelles de ses adhérents et contacts dans le cadre de la gestion des licences, de l’organisation des activités sportives et de l’information du club.</p>
+
+      <h2>Données collectées</h2>
+      <p>Les informations collectées (nom, prénom, coordonnées, informations de licence) sont strictement nécessaires au fonctionnement associatif du club.</p>
+
+      <h2>Cookies</h2>
+      <p>Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (session de connexion de l’espace administrateur). Aucun cookie publicitaire ou de mesure d’audience tiers n’est déposé.</p>
+
+      <h2>Vos droits</h2>
+      <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification et de suppression de vos données. Pour toute demande, contactez : <%= site.email %>.</p>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

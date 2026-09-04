@@ -1,0 +1,21 @@
+<%- include('../partials/head', { pageTitle: 'Espace adhérents' }) %>
+<%- include('../partials/header') %>
+
+<main id="contenu" class="gate">
+  <div class="container gate__card">
+    <div class="gate__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+    </div>
+    <h1 class="gate__title">Espace adhérents</h1>
+    <p class="gate__text">Cet espace est réservé aux adhérents du club. Saisissez le code communiqué par le club pour accéder aux compositions et aux informations pratiques.</p>
+    <% if (error) { %><p class="gate__error" role="alert"><%= error %></p><% } %>
+    <form class="gate__form" method="post" action="<%= path %>">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <label class="visually-hidden" for="code">Code d’accès</label>
+      <input class="gate__input" id="code" name="code" type="password" inputmode="numeric" autocomplete="off" placeholder="Code d’accès" required>
+      <button class="btn btn--primary" type="submit">Accéder</button>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

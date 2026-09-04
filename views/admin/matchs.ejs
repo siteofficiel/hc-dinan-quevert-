@@ -1,0 +1,43 @@
+<%- include('partials/head', { pageTitle: 'Résultats & matchs' }) %>
+<%- include('partials/nav', { active: 'matchs' }) %>
+
+<div class="admin-pagehead">
+  <div>
+    <h1 class="admin-title">Résultats &amp; matchs</h1>
+    <p class="admin-subtitle">Ajoutez un match : sans score, il s’affiche dans « prochains matchs » ; avec score, dans les « résultats ».</p>
+  </div>
+  <a class="btn btn--primary" href="/admin/matchs/nouveau">+ Nouveau match / résultat</a>
+</div>
+
+<% if (matchs.length) { %>
+<ul class="admin-list">
+  <% matchs.forEach(m => { %>
+  <li class="admin-list__item">
+    <div class="admin-list__body">
+      <span class="admin-list__title">
+        <%= m.equipeLabel %> — Quévert vs <%= m.adversaire %>
+        <% if (m.scorePour !== null && m.scorePour !== undefined && m.scorePour !== '') { %>
+        <strong class="admin-list__score"><%= m.scorePour %> – <%= m.scoreContre %></strong>
+        <% } else { %><span class="badge-issue badge-issue--nul">À venir</span><% } %>
+      </span>
+      <span class="admin-list__meta">
+        <span class="chip"><%= m.competition %></span>
+        <%= util.formatDateShort(m.dateISO) %> · <%= m.heure %> · <%= m.lieu %>
+        <% if (!m.publie) { %><span class="badge-issue badge-issue--defaite">Masqué</span><% } %>
+      </span>
+    </div>
+    <div class="admin-list__actions">
+      <a class="btn btn--outline btn--sm" href="/admin/matchs/<%= m.id %>">Modifier</a>
+      <form method="post" action="/admin/matchs/<%= m.id %>/supprimer" onsubmit="return confirm('Supprimer ce match ?');">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn--danger btn--sm" type="submit">Supprimer</button>
+      </form>
+    </div>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p class="empty-note">Aucun match enregistré.</p>
+<% } %>
+
+<%- include('partials/foot') %>

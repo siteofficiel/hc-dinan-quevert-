@@ -1,0 +1,9 @@
+<% // Bannière d'en-tête des pages intérieures. Paramètres : kicker, title, subtitle (optionnel), image (optionnel) %>
+<section class="page-hero<%= (typeof image !== 'undefined' && image) ? ' page-hero--img' : '' %>" style="<%= (typeof image !== 'undefined' && image) ? 'background-image:url(\'' + image + '\')' : '' %>">
+  <div class="page-hero__overlay"></div>
+  <div class="container page-hero__inner">
+    <% if (typeof kicker !== 'undefined' && kicker) { %><p class="page-hero__kicker"><%= kicker %></p><% } %>
+    <h1 class="page-hero__title"><%= title %></h1>
+    <% if (typeof subtitle !== 'undefined' && subtitle) { %><p class="page-hero__sub"><%= subtitle %></p><% } %>
+  </div>
+</section>

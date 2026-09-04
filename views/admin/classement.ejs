@@ -1,0 +1,38 @@
+<%- include('partials/head', { pageTitle: 'Classement N3' }) %>
+<%- include('partials/nav', { active: 'classement' }) %>
+
+<h1 class="admin-title">Classement N3</h1>
+<p class="admin-subtitle">Modifiez le tableau puis enregistrez. La première ligne = 1ʳᵉ place.</p>
+
+<form class="admin-form" method="post" action="/admin/classement">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <div class="table-scroll">
+    <table class="standing-table standing-table--edit">
+      <thead>
+        <tr><th>#</th><th class="ta-l">Équipe</th><th>Pts</th><th>J</th><th>G</th><th>N</th><th>P</th><th>BP</th><th>BC</th><th></th></tr>
+      </thead>
+      <tbody id="classementRows">
+        <% classement.forEach(r => { %>
+        <tr>
+          <td><span class="pos pos--<%= r.pos <= 3 ? 'top' : 'normal' %>"><%= r.pos %></span></td>
+          <td class="ta-l"><input class="field__input field__input--cell" name="equipe" type="text" value="<%= r.equipe %>" required></td>
+          <td><input class="field__input field__input--cell field__input--num" name="pts" type="number" value="<%= r.pts %>"></td>
+          <td><input class="field__input field__input--cell field__input--num" name="j" type="number" value="<%= r.j %>"></td>
+          <td><input class="field__input field__input--cell field__input--num" name="g" type="number" value="<%= r.g %>"></td>
+          <td><input class="field__input field__input--cell field__input--num" name="n" type="number" value="<%= r.n %>"></td>
+          <td><input class="field__input field__input--cell field__input--num" name="p" type="number" value="<%= r.p %>"></td>
+          <td><input class="field__input field__input--cell field__input--num" name="bp" type="number" value="<%= r.bp %>"></td>
+          <td><input class="field__input field__input--cell field__input--num" name="bc" type="number" value="<%= r.bc %>"></td>
+          <td><button type="button" class="btn btn--danger btn--sm row-remove" aria-label="Retirer la ligne">×</button></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <div class="form-actions">
+    <button type="button" class="btn btn--outline" id="addRow">+ Ajouter une ligne</button>
+    <button class="btn btn--primary" type="submit">Enregistrer le classement</button>
+  </div>
+</form>
+
+<%- include('partials/foot') %>

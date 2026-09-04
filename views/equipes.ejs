@@ -1,0 +1,31 @@
+<%- include('partials/head', { pageTitle: 'Équipes' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'Toutes les catégories', title: 'Nos équipes', subtitle: 'De l’école de patinage à la N1 Élite, une seule famille bleu & blanc.' }) %>
+
+  <% Object.keys(groupes).forEach(cat => { %>
+  <section class="section" aria-labelledby="cat-<%= util.slugify(cat) %>">
+    <div class="container">
+      <h2 class="section-head__title section-head__title--small" id="cat-<%= util.slugify(cat) %>"><%= cat %></h2>
+      <div class="teams-grid">
+        <% groupes[cat].forEach(e => { %>
+        <a class="team-card" href="<%= e.slug === 'n3' ? '/n3' : '/equipes/' + e.slug %>">
+          <span class="team-card__img">
+            <img src="<%= e.image || '/img/hero.jpg' %>" alt="Équipe <%= e.nom %>" loading="lazy" width="480" height="320">
+            <% if (e.slug === 'n3') { %><span class="team-card__flag">À l’honneur</span><% } %>
+          </span>
+          <span class="team-card__body">
+            <span class="team-card__name"><%= e.nom %></span>
+            <span class="team-card__tagline"><%= e.tagline %></span>
+            <span class="link-arrow">Voir l’équipe</span>
+          </span>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% }) %>
+</main>
+
+<%- include('partials/footer') %>

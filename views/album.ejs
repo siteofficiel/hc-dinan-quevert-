@@ -1,0 +1,41 @@
+<%- include('partials/head', { pageTitle: album.nom }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'Album photo', title: album.nom, subtitle: album.description }) %>
+
+  <section class="section">
+    <div class="container">
+      <a class="back-link" href="/photos">← Tous les albums</a>
+
+      <% if (photos.length) { %>
+      <div class="gallery-grid" data-album>
+        <% photos.forEach((p, i) => { %>
+        <a class="gallery-item" href="<%= p.fichier %>" data-lightbox="album" data-alt="<%= p.legende || album.nom %>" data-index="<%= i %>">
+          <img src="<%= p.fichier %>" alt="<%= p.legende || (album.nom + ' — photo ' + (i+1)) %>" loading="lazy" width="480" height="320">
+        </a>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="empty-note">Cet album ne contient pas encore de photos.</p>
+      <% } %>
+
+      <h2 class="section-head__title section-head__title--small album-others-title">Autres albums</h2>
+      <div class="album-grid album-grid--3">
+        <% albums.filter(a => a.slug !== album.slug).slice(0,3).forEach(al => { %>
+        <a class="album-card" href="/photos/<%= al.slug %>">
+          <span class="album-card__img">
+            <% if (al.cover) { %><img src="<%= al.cover.fichier %>" alt="<%= al.nom %>" loading="lazy" width="480" height="320"><% } %>
+          </span>
+          <span class="album-card__overlay">
+            <span class="album-card__name"><%= al.nom %></span>
+            <span class="album-card__count"><%= al.count %> photo<%= al.count > 1 ? 's' : '' %></span>
+          </span>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

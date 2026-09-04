@@ -1,0 +1,23 @@
+<%- include('../partials/head', { pageTitle: 'Compositions du week-end' }) %>
+<%- include('../partials/header') %>
+
+<main id="contenu">
+  <%- include('../partials/page-hero', { kicker: 'Espace adhérents', title: 'Compositions du week-end', subtitle: 'Où je joue, contre qui, à quelle heure et avec qui ?' }) %>
+
+  <section class="section">
+    <div class="container">
+      <% const aVenir = prochaines.length ? prochaines : comps; %>
+      <% if (aVenir.length) { %>
+        <% aVenir.forEach(c => { %><%- include('../partials/comp-card', { c }) %><% }) %>
+      <% } else { %>
+      <div class="empty-state">
+        <p class="empty-state__title">Aucune composition publiée</p>
+        <p>Les compositions du week-end apparaîtront ici dès leur publication par les responsables d’équipe.</p>
+        <a class="btn btn--primary" href="/adherents">Retour à l’espace adhérents</a>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

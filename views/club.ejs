@@ -1,0 +1,165 @@
+<%- include('partials/head', { pageTitle: 'Le club' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'Hockey Club Dinan-Quévert', title: 'Le club', subtitle: 'Depuis 1987, l’esprit bleu & blanc au service des jeunes et du territoire.', image: '/img/club.jpg' }) %>
+
+  <!-- PRÉSENTATION -->
+  <section class="section" aria-labelledby="titre-presentation">
+    <div class="container two-col">
+      <div>
+        <p class="section-head__kicker">Présentation</p>
+        <h2 class="section-head__title" id="titre-presentation">Une aventure humaine et sportive</h2>
+      </div>
+      <div class="prose">
+        <p><%= site.presentation %></p>
+        <p>Né de la volonté de deux passionnés, Thierry Lemarié et Yannick Ricaille, avec le soutien de la commune de Quévert, le club est devenu une référence du rink hockey français : onze titres de champion de France, six Coupes de France et un rayonnement européen.</p>
+        <p>Mais le HC Dinan-Quévert, c’est avant tout une école de vie : des centaines d’enfants formés au patinage, des bénévoles engagés et un esprit familial qui fait la fierté du Pays de Dinan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALEURS -->
+  <section class="section section--tint" aria-labelledby="titre-valeurs">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <p class="section-head__kicker">Nos valeurs</p>
+        <h2 class="section-head__title" id="titre-valeurs">Ce qui nous fait avancer</h2>
+      </div>
+      <div class="values-grid">
+        <article class="value-card">
+          <span class="value-card__num">01</span>
+          <h3 class="value-card__title">Famille</h3>
+          <p>Un club à taille humaine où chaque licencié, du plus jeune patineur au bénévole, trouve sa place et est reconnu.</p>
+        </article>
+        <article class="value-card">
+          <span class="value-card__num">02</span>
+          <h3 class="value-card__title">Formation</h3>
+          <p>De l’école de patinage à la N1 Élite, nous formons les joueurs et les citoyens de demain, sur et hors des parquets.</p>
+        </article>
+        <article class="value-card">
+          <span class="value-card__num">03</span>
+          <h3 class="value-card__title">Compétition</h3>
+          <p>Onze titres nationaux et l’exigence du haut niveau, portés par l’envie de faire vibrer la salle Némée.</p>
+        </article>
+        <article class="value-card">
+          <span class="value-card__num">04</span>
+          <h3 class="value-card__title">Territoire</h3>
+          <p>Fiers d’être Bretons et Côtes-d’Armoricains : le club rayonne sur Dinan, Quévert et tout le département.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTOIRE -->
+  <section class="section" aria-labelledby="titre-histoire">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">Depuis 1987</p>
+          <h2 class="section-head__title" id="titre-histoire">Notre histoire</h2>
+        </div>
+      </div>
+      <ol class="timeline">
+        <% (site.histoire || []).forEach(h => { %>
+        <li class="timeline__item">
+          <span class="timeline__year"><%= h.annee %></span>
+          <p class="timeline__text"><%= h.texte %></p>
+        </li>
+        <% }) %>
+      </ol>
+    </div>
+  </section>
+
+  <!-- LE RINK HOCKEY -->
+  <section class="section section--tint" aria-labelledby="titre-rink">
+    <div class="container two-col">
+      <div>
+        <p class="section-head__kicker">Le sport</p>
+        <h2 class="section-head__title" id="titre-rink">Le rink hockey, c’est quoi ?</h2>
+        <div class="prose">
+          <p>Le rink hockey est un hockey sur patins à roulettes (quad), pratiqué en salle sur un parquet, à cinq contre cinq (quatre joueurs de champ et un gardien). Rapide, technique et spectaculaire, il se joue en deux mi-temps de 25 minutes.</p>
+          <p>Discipline historique du patinage français, le rink hockey a forgé la légende du HC Dinan-Quévert, l’un des clubs les plus titrés de l’Hexagone.</p>
+        </div>
+      </div>
+      <div class="rink-facts">
+        <div class="rink-fact"><strong>5</strong><span>joueurs par équipe</span></div>
+        <div class="rink-fact"><strong>2 × 25 min</strong><span>de temps de jeu</span></div>
+        <div class="rink-fact"><strong>Patins quad</strong><span>crosse &amp; balle</span></div>
+        <div class="rink-fact"><strong>Dès 4 ans</strong><span>à l’école de patinage</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÉGORIES -->
+  <section class="section" aria-labelledby="titre-categories">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">De 4 à 99 ans</p>
+          <h2 class="section-head__title" id="titre-categories">Nos catégories</h2>
+        </div>
+        <a class="link-arrow" href="/equipes">Découvrir les équipes</a>
+      </div>
+      <ul class="categories-list">
+        <li><a href="/equipes/n1-elite"><strong>N1 Élite</strong><span>Équipe fanion — haut niveau national</span></a></li>
+        <li><a href="/n3"><strong>N3</strong><span>Réserve compétitive du club</span></a></li>
+        <li><a href="/equipes/u19"><strong>U19 · U17 · U15</strong><span>La relève en compétition</span></a></li>
+        <li><a href="/equipes/u13"><strong>U13 · U11 · U9</strong><span>L’école du jeu et du plaisir</span></a></li>
+        <li><a href="/equipes/ecole-de-patinage"><strong>École de patinage</strong><span>Dès 4 ans</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- INFRASTRUCTURES -->
+  <section class="section section--tint" aria-labelledby="titre-infra">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">Nos installations</p>
+          <h2 class="section-head__title" id="titre-infra">Infrastructures</h2>
+        </div>
+      </div>
+      <div class="infra-grid">
+        <article class="infra-card">
+          <div class="infra-card__img"><img src="/img/hero.jpg" alt="Salle Némée, salle omnisports de Dinan" loading="lazy" width="640" height="400"></div>
+          <div class="infra-card__body">
+            <h3 class="infra-card__title">Salle Némée — Dinan</h3>
+            <p>Salle omnisports de Dinan (≈ 1 600 places), antre de l’équipe fanion et des grandes soirées européennes du club.</p>
+          </div>
+        </article>
+        <article class="infra-card">
+          <div class="infra-card__img"><img src="/img/club.jpg" alt="Complexe sportif de Quévert" loading="lazy" width="640" height="400"></div>
+          <div class="infra-card__body">
+            <h3 class="infra-card__title">Complexe sportif — Quévert</h3>
+            <p>Le gymnase de Quévert accueille les entraînements des jeunes et de l’école de patinage, berceau du club depuis 1987.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS PRATIQUES -->
+  <section class="section" aria-labelledby="titre-infos">
+    <div class="container two-col">
+      <div>
+        <p class="section-head__kicker">Nous trouver</p>
+        <h2 class="section-head__title" id="titre-infos">Informations pratiques</h2>
+        <div class="prose">
+          <p><strong>Siège du club</strong><br><%= site.adresse %></p>
+          <p><strong>Lieu des matchs</strong><br><%= site.salle %></p>
+          <p><strong>Téléphone</strong><br><%= site.telephone %></p>
+          <p><strong>Email</strong><br><a href="mailto:<%= site.email %>"><%= site.email %></a></p>
+          <a class="btn btn--primary" href="<%= site.salleLien %>" target="_blank" rel="noopener">Localiser la salle sur la carte</a>
+        </div>
+      </div>
+      <div class="map-placeholder" role="img" aria-label="Carte de localisation — salle Némée, Dinan">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <span><%= site.salle %></span>
+        <a href="<%= site.salleLien %>" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

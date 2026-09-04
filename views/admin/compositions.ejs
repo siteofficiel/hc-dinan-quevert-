@@ -1,0 +1,48 @@
+<%- include('partials/head', { pageTitle: 'Compositions du week-end' }) %>
+<%- include('partials/nav', { active: 'compositions' }) %>
+
+<div class="admin-pagehead">
+  <div>
+    <h1 class="admin-title">Compositions du week-end</h1>
+    <p class="admin-subtitle">Composez l’équipe, puis cliquez sur <strong>Publier</strong> : elle apparaît aussitôt dans l’espace adhérents.</p>
+  </div>
+  <a class="btn btn--primary" href="/admin/compositions/nouveau">+ Nouvelle composition</a>
+</div>
+
+<% if (comps.length) { %>
+<ul class="admin-list">
+  <% comps.forEach(c => { %>
+  <li class="admin-list__item">
+    <div class="admin-list__body">
+      <span class="admin-list__title"><%= c.equipeLabel %> — <%= c.jour %> · Quévert vs <%= c.adversaire %></span>
+      <span class="admin-list__meta">
+        <%= util.formatDateShort(c.dateISO) %> · <%= c.heure %> · <%= c.lieu %>
+        <% if (c.publie) { %><span class="badge-issue badge-issue--victoire">Publiée</span><% } else { %><span class="badge-issue badge-issue--defaite">Brouillon</span><% } %>
+      </span>
+    </div>
+    <div class="admin-list__actions">
+      <a class="btn btn--outline btn--sm" href="/admin/compositions/<%= c.id %>">Modifier</a>
+      <% if (c.publie) { %>
+      <form method="post" action="/admin/compositions/<%= c.id %>/depublier">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn--ghost-dark btn--sm" type="submit">Dépublier</button>
+      </form>
+      <% } else { %>
+      <form method="post" action="/admin/compositions/<%= c.id %>/publier">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn--primary btn--sm" type="submit">Publier</button>
+      </form>
+      <% } %>
+      <form method="post" action="/admin/compositions/<%= c.id %>/supprimer" onsubmit="return confirm('Supprimer cette composition ?');">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn--danger btn--sm" type="submit">Supprimer</button>
+      </form>
+    </div>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p class="empty-note">Aucune composition créée pour le moment.</p>
+<% } %>
+
+<%- include('partials/foot') %>

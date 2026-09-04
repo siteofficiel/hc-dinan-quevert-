@@ -1,0 +1,26 @@
+<%- include('partials/head', { pageTitle: 'Mentions légales' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'Informations', title: 'Mentions légales' }) %>
+  <section class="section">
+    <div class="container prose prose--narrow">
+      <h2>Éditeur du site</h2>
+      <p><%= site.nomComplet %><br><%= site.adresse %><br>Tél. : <%= site.telephone %><br>Email : <%= site.email %></p>
+
+      <h2>Responsable de la publication</h2>
+      <p>Le bureau du <%= site.nomCourt %>.</p>
+
+      <h2>Hébergement</h2>
+      <p>Ce site est hébergé par un prestataire d’hébergement. Les informations relatives à l’hébergeur seront complétées par le club.</p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>L’ensemble des contenus (textes, logos, photos) est la propriété du <%= site.nomCourt %>, sauf mention contraire. Toute reproduction est soumise à autorisation préalable.</p>
+
+      <h2>Crédits photos</h2>
+      <p>Les photos publiées sur ce site sont fournies par le club et ses membres. Les images de démonstration utilisées lors de la conception seront remplacées par les visuels officiels du club.</p>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

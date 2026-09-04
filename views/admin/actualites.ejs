@@ -1,0 +1,42 @@
+<%- include('partials/head', { pageTitle: 'Gérer les actualités' }) %>
+<%- include('partials/nav', { active: 'actualites' }) %>
+
+<div class="admin-pagehead">
+  <div>
+    <h1 class="admin-title">Actualités</h1>
+    <p class="admin-subtitle">Créez, modifiez ou supprimez les actualités du club.</p>
+  </div>
+  <a class="btn btn--primary" href="/admin/actualites/nouveau">+ Nouvelle actualité</a>
+</div>
+
+<% if (actus.length) { %>
+<ul class="admin-list">
+  <% actus.forEach(a => { %>
+  <li class="admin-list__item">
+    <div class="admin-list__thumb">
+      <img src="<%= a.image || '/img/hero.jpg' %>" alt="" width="72" height="48">
+    </div>
+    <div class="admin-list__body">
+      <span class="admin-list__title"><%= a.titre %></span>
+      <span class="admin-list__meta">
+        <span class="chip"><%= a.categorie %></span>
+        <%= util.formatDateShort(a.dateISO) %>
+        <% if (!a.publie) { %><span class="badge-issue badge-issue--defaite">Brouillon</span><% } %>
+        <% if (a.epingle) { %><span class="badge-issue badge-issue--nul">À la une</span><% } %>
+      </span>
+    </div>
+    <div class="admin-list__actions">
+      <a class="btn btn--outline btn--sm" href="/admin/actualites/<%= a.id %>">Modifier</a>
+      <form method="post" action="/admin/actualites/<%= a.id %>/supprimer" onsubmit="return confirm('Supprimer cette actualité ?');">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="btn btn--danger btn--sm" type="submit">Supprimer</button>
+      </form>
+    </div>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p class="empty-note">Aucune actualité pour le moment.</p>
+<% } %>
+
+<%- include('partials/foot') %>

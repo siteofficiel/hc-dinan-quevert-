@@ -1,0 +1,21 @@
+<% // Carte "prochain match" : m = match sans score %>
+<% const d = util.parseDate(m.dateISO); %>
+<article class="match-card">
+  <div class="match-card__date">
+    <span class="match-card__day"><%= d ? util.JOURS[d.getDay()].slice(0,3) : '' %></span>
+    <span class="match-card__num"><%= d ? d.getDate() : '' %></span>
+    <span class="match-card__month"><%= d ? util.MOIS[d.getMonth()].slice(0,4) : '' %></span>
+  </div>
+  <div class="match-card__body">
+    <span class="chip chip--light"><%= m.competition %></span>
+    <p class="match-card__teams">
+      <strong>Quévert <span class="match-card__label">(<%= m.equipeLabel %>)</span></strong>
+      <em>vs</em>
+      <strong><%= m.adversaire %></strong>
+    </p>
+    <p class="match-card__meta">
+      <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <%= m.heure %> · <%= m.lieu %>
+    </p>
+  </div>
+</article>

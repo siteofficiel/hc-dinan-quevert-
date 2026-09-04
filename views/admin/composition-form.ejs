@@ -1,0 +1,95 @@
+<%- include('partials/head', { pageTitle: editing ? 'Modifier la composition' : 'Nouvelle composition' }) %>
+<%- include('partials/nav', { active: 'compositions' }) %>
+
+<h1 class="admin-title"><%= editing ? 'Modifier la composition' : 'Nouvelle composition du week-end' %></h1>
+<p class="admin-subtitle">Remplissez dans l’ordre, puis publiez. Simple et rapide.</p>
+
+<form class="admin-form" method="post" action="<%= editing ? '/admin/compositions/' + comp.id : '/admin/compositions' %>">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="equipeSlug">1 · L’équipe *</label>
+      <select class="field__input" id="equipeSlug" name="equipeSlug" required>
+        <% equipes.forEach(e => { %>
+        <option value="<%= e.slug %>" <%= comp.equipeSlug === e.slug ? 'selected' : '' %>><%= e.nom %> (<%= e.categorie %>)</option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="field">
+      <label class="field__label" for="jour">2 · Le jour</label>
+      <select class="field__input" id="jour" name="jour">
+        <option <%= comp.jour === 'Samedi' ? 'selected' : '' %>>Samedi</option>
+        <option <%= comp.jour === 'Dimanche' ? 'selected' : '' %>>Dimanche</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="field__label" for="dateISO">Date *</label>
+      <input class="field__input" id="dateISO" name="dateISO" type="date" value="<%= comp.dateISO || util.todayISO() %>" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label class="field__label" for="adversaire">3 · L’adversaire *</label>
+      <input class="field__input" id="adversaire" name="adversaire" type="text" value="<%= comp.adversaire || '' %>" required>
+    </div>
+    <div class="field">
+      <label class="field__label" for="heure">L’heure</label>
+      <input class="field__input" id="heure" name="heure" type="time" value="<%= comp.heure || '' %>">
+    </div>
+    <div class="field">
+      <label class="field__label" for="lieu">Le lieu</label>
+      <input class="field__input" id="lieu" name="lieu" type="text" value="<%= comp.lieu || 'Salle Némée, Dinan' %>">
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="seg">
+      <label class="seg__opt"><input type="radio" name="domicile" value="on" <%= comp.domicile !== false ? 'checked' : '' %>> À domicile</label>
+      <label class="seg__opt"><input type="radio" name="domicile" value="" <%= comp.domicile === false ? 'checked' : '' %>> À l’extérieur</label>
+    </div>
+  </div>
+
+  <h2 class="admin-form__section">4 · Les joueurs présents</h2>
+  <div class="roster-editor" id="compEditor">
+    <% const rows = (comp.joueurs && comp.joueurs.length) ? comp.joueurs : [{nom:'',poste:'Joueur',present:true},{nom:'',poste:'Gardien',present:true}]; %>
+    <% rows.forEach((j, i) => { %>
+    <div class="roster-editor__row">
+      <input class="field__input" name="joueurs[nom]" type="text" placeholder="Nom du joueur" value="<%= j.nom %>">
+      <select class="field__input roster-editor__poste" name="joueurs[poste]">
+        <option value="Joueur" <%= j.poste === 'Joueur' ? 'selected' : '' %>>Joueur</option>
+        <option value="Gardien" <%= j.poste === 'Gardien' ? 'selected' : '' %>>Gardien</option>
+      </select>
+      <label class="check roster-editor__present"><input type="checkbox" name="joueurs[present]" value="<%= i %>" <%= j.present !== false ? 'checked' : '' %>> Présent</label>
+      <button type="button" class="btn btn--danger btn--sm roster-editor__remove" aria-label="Retirer cette ligne">×</button>
+    </div>
+    <% }) %>
+  </div>
+  <div class="form-row form-row--inline">
+    <button type="button" class="btn btn--outline btn--sm" id="addCompRow">+ Ajouter un joueur</button>
+    <button type="button" class="btn btn--outline btn--sm" id="fillFromRoster">Remplir depuis l’effectif de l’équipe</button>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="absents">5 · Les absents (un par ligne)</label>
+    <textarea class="field__input" id="absents" name="absents" rows="3"><%= (comp.absents || []).join('\n') %></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="note">Note pour les joueurs / parents (facultatif)</label>
+    <input class="field__input" id="note" name="note" type="text" value="<%= comp.note || '' %>" placeholder="Ex. Rendez-vous 45 min avant le match">
+  </div>
+
+  <div class="form-actions form-actions--split">
+    <label class="check check--big"><input type="checkbox" name="publie" <%= comp.publie !== false ? 'checked' : '' %>> Publier la composition maintenant</label>
+    <div>
+      <a class="btn btn--outline" href="/admin/compositions">Annuler</a>
+      <button class="btn btn--primary btn--big" type="submit"><%= editing ? 'Enregistrer' : 'Publier la composition' %></button>
+    </div>
+  </div>
+</form>
+
+<script type="application/json" id="rosterData"><%- JSON.stringify(equipes.map(e => ({ slug: e.slug, nom: e.nom, joueurs: (e.joueurs || []).map(j => j.nom) }))) %></script>
+
+<%- include('partials/foot') %>

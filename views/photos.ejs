@@ -1,0 +1,36 @@
+<%- include('partials/head', { pageTitle: 'Photos' }) %>
+<%- include('partials/header') %>
+
+<main id="contenu">
+  <%- include('partials/page-hero', { kicker: 'En images', title: 'Galerie photos', subtitle: 'Les plus beaux moments du club, saison après saison.' }) %>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="section-head__kicker">Les albums</p>
+          <h2 class="section-head__title">Nos albums</h2>
+        </div>
+      </div>
+      <% if (albums.length) { %>
+      <div class="album-grid">
+        <% albums.forEach(al => { %>
+        <a class="album-card" href="/photos/<%= al.slug %>">
+          <span class="album-card__img">
+            <% if (al.cover) { %><img src="<%= al.cover.fichier %>" alt="<%= al.nom %>" loading="lazy" width="560" height="360"><% } %>
+          </span>
+          <span class="album-card__overlay">
+            <span class="album-card__name"><%= al.nom %></span>
+            <span class="album-card__count"><%= al.count %> photo<%= al.count > 1 ? 's' : '' %></span>
+          </span>
+        </a>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="empty-note">Les premiers albums seront publiés prochainement.</p>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
