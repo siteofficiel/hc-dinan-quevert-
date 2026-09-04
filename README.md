@@ -65,7 +65,7 @@ tools/build-pages.js — régénère les pages HTML (node tools/build-pages.js)
 
 ## Points à connaître
 
-- **Espace adhérents** : protégé par un code facultatif (défini dans *Réglages*). Il s'agit d'une protection légère côté navigateur, adaptée à un usage associatif.
-- **Sécurité de l'administration** : la clé GitHub **est** le mot de passe. Elle n'est conservée que pendant la session (jamais écrite dans le site). Ne la partagez jamais.
+- **Espace adhérents** : protégé par un code (défini dans *Réglages* ; par défaut : `HC*QUEVERT*_2026`). Il s'agit d'une protection légère côté navigateur, adaptée à un usage associatif.
+- **Sécurité de l'administration** : la clé GitHub **est** le mot de passe. Elle est mémorisée sur l'appareil de l'administrateur (navigateur) pour ne pas avoir à la ressaisir — le bouton « Déconnexion » l'efface. Ne la partagez jamais.
 - **Délai de mise à jour** : après un enregistrement, le site se met à jour en environ une minute (redéploiement GitHub Pages).
 - **SEO** : titres et meta descriptions par page, balises H1/H2, alt sur les images, mots-clés locaux (Rink Hockey Quévert, Rink Hockey Dinan, HC Dinan Quévert, Côtes-d'Armor, Bretagne).

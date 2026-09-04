@@ -216,6 +216,9 @@ h1, h2, h3, .display { font-family: var(--font-display); font-weight: 800; }
 }
 .topbar__socials a:hover { background: rgba(255,255,255,.1); color: #fff; }
 .topbar__socials .ic { width: 16px; height: 16px; }
+.topbar__link { display: inline-flex; align-items: center; gap: 6px; color: #8ba0bd; font-size: .84rem; font-weight: 500; white-space: nowrap; }
+.topbar__link:hover { color: #fff; }
+.topbar__link .ic { width: 14px; height: 14px; color: #6f87a8; }
 
 .header-main { display: flex; align-items: center; gap: 24px; padding: 14px 0; }
 
@@ -952,6 +955,7 @@ select.field__input { appearance: auto; }
 @media (max-width: 720px) {
   .container { width: min(1200px, 100% - 30px); }
   .topbar__item--hide { display: none; }
+  .topbar__link { display: none; }
   .brand__sub { display: none; }
   .btn--adherent { padding: 10px 13px; font-size: .86rem; }
   .btn--adherent .ic { display: none; }

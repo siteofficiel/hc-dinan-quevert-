@@ -58,7 +58,7 @@ Le site est **100 % statique** : il n'y a **rien à installer**. Tout se passe s
 
 ## C. Sécurité
 
-- La clé n'est **jamais enregistrée dans le site** : elle n'est gardée que pendant la session de navigation.
+- La clé est **mémorisée sur votre appareil** (dans le navigateur) pour ne pas avoir à la ressaisir à chaque connexion. Le bouton « Déconnexion » permet de l'effacer.
 - Ne la partagez jamais par email ni sur les réseaux sociaux.
 - Si elle est compromise : *Developer settings → Tokens → Revoke*, puis recréez-en une.
 - Le site étant hébergé sur GitHub Pages, pensez à **changer régulièrement la clé** (tous les 90 jours).

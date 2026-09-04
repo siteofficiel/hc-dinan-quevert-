@@ -31,7 +31,7 @@
 
   // ---------- état & stockage ----------
   var state = {
-    token: sessionStorage.getItem('hcq-admin-token') || '',
+    token: localStorage.getItem('hcq-admin-token') || '',
     owner: localStorage.getItem('hcq-admin-owner') || '',
     repo: localStorage.getItem('hcq-admin-repo') || 'hc-dinan-quevert',
     branch: 'main',
@@ -759,7 +759,7 @@
     var repo = byId('repo').value.trim();
     if (!token || !owner || !repo) return;
     state.token = token; state.owner = owner; state.repo = repo;
-    sessionStorage.setItem('hcq-admin-token', token);
+    localStorage.setItem('hcq-admin-token', token);
     localStorage.setItem('hcq-admin-owner', owner);
     localStorage.setItem('hcq-admin-repo', repo);
     var btn = byId('loginForm').querySelector('button'); btn.disabled = true; btn.textContent = 'Connexion…';
@@ -768,13 +768,13 @@
       showApp();
     }).catch(function (err) {
       btn.disabled = false; btn.textContent = 'Se connecter';
-      sessionStorage.removeItem('hcq-admin-token');
+      localStorage.removeItem('hcq-admin-token');
       showLogin('Connexion impossible : ' + err.message + ' — vérifiez la clé, le propriétaire et le nom du dépôt.');
     });
   });
 
   byId('logoutBtn').addEventListener('click', function () {
-    sessionStorage.removeItem('hcq-admin-token');
+    localStorage.removeItem('hcq-admin-token');
     location.reload();
   });
 

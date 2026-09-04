@@ -35,6 +35,10 @@ const HEADER = `
     <div class="container topbar__inner">
       <p class="topbar__item"><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-bind="salle"></span></p>
       <p class="topbar__item topbar__item--hide"><svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><span data-bind="telephone"></span></p>
+      <a class="topbar__link" href="adherents.html">
+        <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+        Espace adhérents
+      </a>
       <div class="topbar__socials">
         <a href="#" data-href="facebook" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.3-1.4 1.5-1.4h1.4V5.5c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5v2.3H8.6V14H11v7h2.5z"/></svg></a>
         <a href="#" data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
@@ -61,10 +65,6 @@ const HEADER = `
       </ul>
     </nav>
     <div class="header-actions">
-      <a class="btn btn--adherent" href="adherents.html">
-        <svg class="ic" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
-        Espace adhérents
-      </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -76,7 +76,7 @@ const HEADER = `
       <li><a href="n3.html">N3</a></li>
       <li><a href="actualites.html">Actualités</a></li>
       <li><a href="photos.html">Photos</a></li>
-      <li><a href="adherents.html" class="mobile-nav__cta">Espace adhérents</a></li>
+      <li><a href="adherents.html">Espace adhérents</a></li>
       <li><a href="admin.html" class="mobile-nav__admin">Espace administrateur</a></li>
     </ul>
   </nav>
@@ -606,7 +606,7 @@ pages['adherents.html'] = wrap('adherents',
         <p class="gate__error" role="alert"></p>
         <form class="gate__form">
           <label class="visually-hidden" for="code">Code d’accès</label>
-          <input class="gate__input" id="code" name="code" type="password" inputmode="numeric" autocomplete="off" placeholder="Code d’accès" required>
+          <input class="gate__input" id="code" name="code" type="password" autocomplete="off" placeholder="Code d’accès" required>
           <button class="btn btn--primary" type="submit">Accéder</button>
         </form>
       </div>
@@ -698,14 +698,14 @@ pages['compositions.html'] = wrap('compositions',
         <p class="gate__error" role="alert"></p>
         <form class="gate__form">
           <label class="visually-hidden" for="code">Code d’accès</label>
-          <input class="gate__input" id="code" name="code" type="password" inputmode="numeric" autocomplete="off" placeholder="Code d’accès" required>
+          <input class="gate__input" id="code" name="code" type="password" autocomplete="off" placeholder="Code d’accès" required>
           <button class="btn btn--primary" type="submit">Accéder</button>
         </form>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="adherentContent">
     <div class="container" id="compsList"></div>
   </section>`
 );
