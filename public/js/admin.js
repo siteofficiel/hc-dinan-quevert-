@@ -37,6 +37,7 @@
     branch: 'main',
     fileSha: null,
     content: null,
+    demo: false,
   };
 
   // ---------- API GitHub ----------
@@ -44,8 +45,9 @@
     var headers = {
       Authorization: 'Bearer ' + state.token,
       Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json',
     };
+    // Content-Type uniquement si un corps est envoyé (évite une requête préliminaire inutile)
+    if (body) headers['Content-Type'] = 'application/json';
     return fetch('https://api.github.com' + urlPath, {
       method: method, headers: headers, body: body ? JSON.stringify(body) : undefined,
     }).then(function (r) {
@@ -53,6 +55,68 @@
         return { ok: r.ok, status: r.status, json: json };
       });
     });
+  }
+
+  // ---------- validation de la clé ----------
+  function validateToken() {
+    return api('GET', '/user').then(function (r) {
+      if (r.ok && r.json && r.json.login) return r.json.login;
+      if (r.status === 401) throw new Error('La clé GitHub est invalide ou expirée. Créez-en une nouvelle (voir GUIDE-GITHUB.md).');
+      if (r.status === 403) throw new Error('La clé GitHub est refusée (HTTP 403). Vérifiez ses permissions (Contents : Read and write).');
+      throw new Error('Erreur GitHub HTTP ' + r.status + (r.json && r.json.message ? ' — ' + r.json.message : ''));
+    });
+  }
+
+  function checkRepo() {
+    return api('GET', repoBase()).then(function (r) {
+      if (r.status === 200 && r.json) {
+        if (r.json.default_branch) state.branch = r.json.default_branch;
+        return;
+      }
+      throw new Error('Le dépôt « ' + state.owner + '/' + state.repo + ' » est introuvable (ou la clé n’y a pas accès). Vérifiez le propriétaire et le nom du dépôt.');
+    });
+  }
+
+  // Contenu de départ minimal (si le site n'a pas encore de fichier de contenu)
+  var DEFAULT_SEED = {
+    settings: {
+      nomCourt: 'HC Dinan-Quévert',
+      nomComplet: 'Hockey Club Dinan-Quévert Côtes d’Armor',
+      sousTitre: 'Rink hockey · Pays de Dinan · depuis 1987',
+      slogan: 'L’esprit bleu & blanc',
+      sloganDetail: 'Un club familial et compétitif, au cœur des Côtes-d’Armor.',
+      presentation: '', email: '', telephone: '', adresse: '', salle: '', salleLien: '',
+      facebook: '', instagram: '', youtube: '', codeAdherent: 'HC*QUEVERT*_2026', partenaires: [],
+    },
+    actualites: [], matchs: [], equipes: [], albums: [], photos: [], compositions: [], classement: [],
+  };
+
+  // Récupère le contenu du site lui-même (pour initialiser le dépôt si besoin)
+  function seedFromSite() {
+    return fetch('data/content.json', { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('Fichier data/content.json introuvable.');
+      return r.json();
+    }).catch(function () {
+      return DEFAULT_SEED;
+    });
+  }
+
+  function friendlyError(err) {
+    var m = (err && err.message) ? err.message : String(err);
+    if (/Failed to fetch|NetworkError|Load failed|fetch failed/i.test(m)) {
+      m = 'Impossible de joindre GitHub (problème de connexion internet ?).';
+    }
+    return m;
+  }
+
+  function downloadFile(name, text) {
+    var blob = new Blob([text], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 100);
   }
 
   function repoBase() { return '/repos/' + encodeURIComponent(state.owner) + '/' + encodeURIComponent(state.repo); }
@@ -83,6 +147,13 @@
     });
   }
   function uploadImage(file, dir) {
+    if (state.demo) {
+      // En mode démo : l'image est stockée en ligne (data URL) dans le fichier téléchargé.
+      return readFileAsDataURL(file).then(function (dataUrl) {
+        if (dataUrl.length > 400000) throw new Error('Image trop volumineuse pour le mode démo (max ~300 Ko).');
+        return dataUrl;
+      });
+    }
     return readFileAsDataURL(file).then(function (dataUrl) {
       var parts = dataUrl.split(',');
       var ext = (file.name.match(/\.(\w+)$/) || [null, 'jpg'])[1].toLowerCase().replace('jpeg', 'jpg');
@@ -97,16 +168,35 @@
 
   // ---------- chargement / sauvegarde du contenu ----------
   function loadContent() {
-    return api('GET', repoBase()).then(function (r) {
-      if (r.json && r.json.default_branch) state.branch = r.json.default_branch;
-      return getFileObj('data/content.json');
-    }).then(function (f) {
-      if (!f) throw new Error('Le fichier data/content.json est introuvable dans le dépôt.');
-      state.content = JSON.parse(f.text);
-      state.fileSha = f.sha;
+    return getFileObj('data/content.json').then(function (f) {
+      if (f) {
+        state.content = JSON.parse(f.text);
+        state.fileSha = f.sha;
+        return;
+      }
+      // Le fichier n'existe pas encore dans le dépôt : on le crée à partir du contenu du site.
+      return seedFromSite().then(function (seed) {
+        return putFile('data/content.json', b64encode(JSON.stringify(seed, null, 2)), null, 'Initialisation du contenu du site')
+          .then(function (r) {
+            if (!r.ok) {
+              throw new Error('Impossible de créer data/content.json (HTTP ' + r.status + ' — la clé a-t-elle le droit « Contents : Read and write » ?).');
+            }
+            return getFileObj('data/content.json');
+          }).then(function (f2) {
+            state.content = JSON.parse(f2.text);
+            state.fileSha = f2.sha;
+          });
+      });
     });
   }
+
   function saveContent(message) {
+    if (state.demo) {
+      var json = JSON.stringify(state.content, null, 2);
+      try { localStorage.setItem('hcq-demo-content', json); } catch (e) {}
+      downloadFile('content.json', json);
+      return Promise.resolve();
+    }
     return putFile('data/content.json', b64encode(JSON.stringify(state.content, null, 2)), state.fileSha, message || 'Mise à jour du contenu du site')
       .then(function (r) {
         if (!r.ok) {
@@ -172,9 +262,13 @@
 
   function persist(msg) {
     return saveContent(msg).then(function () {
-      showFlash('Modifications publiées sur GitHub. Le site est mis à jour dans environ 1 minute.', 'ok');
+      if (state.demo) {
+        showFlash('Mode démo : le fichier content.json a été téléchargé. Remplacez-le dans votre dépôt GitHub (dossier data/) pour publier ces changements.', 'ok');
+      } else {
+        showFlash('Modifications publiées sur GitHub. Le site est mis à jour dans environ 1 minute.', 'ok');
+      }
     }).catch(function (err) {
-      showFlash('Erreur lors de la publication : ' + err.message, 'err');
+      showFlash('Erreur lors de la publication : ' + friendlyError(err), 'err');
       throw err;
     });
   }
@@ -736,12 +830,14 @@
   function showLogin(err) {
     byId('adminShell').hidden = true;
     byId('loginPanel').hidden = false;
-    if (err) { var e = byId('loginError'); e.textContent = err; e.hidden = false; }
+    var e = byId('loginError');
+    if (err) { e.textContent = err; e.hidden = false; }
+    else { e.textContent = ''; e.hidden = true; }
   }
   function showApp() {
     byId('loginPanel').hidden = true;
     byId('adminShell').hidden = false;
-    byId('repoLabel').textContent = state.owner + '/' + state.repo;
+    byId('repoLabel').textContent = state.demo ? 'mode démo (sans GitHub)' : state.owner + '/' + state.repo;
     renderNav();
     openSection('dashboard');
     // navigation par les gros boutons du tableau de bord
@@ -751,35 +847,76 @@
     });
   }
 
+  // Connexion complète : validation de la clé, du dépôt, puis chargement du contenu.
+  function connectAndShow() {
+    return validateToken()
+      .then(function () { return checkRepo(); })
+      .then(function () { return loadContent(); })
+      .then(function () {
+        localStorage.setItem('hcq-admin-token', state.token);
+        localStorage.setItem('hcq-admin-owner', state.owner);
+        localStorage.setItem('hcq-admin-repo', state.repo);
+        showApp();
+      });
+  }
+
   // ================= démarrage =================
   byId('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var token = byId('token').value.trim();
     var owner = byId('owner').value.trim();
     var repo = byId('repo').value.trim();
-    if (!token || !owner || !repo) return;
-    state.token = token; state.owner = owner; state.repo = repo;
-    localStorage.setItem('hcq-admin-token', token);
-    localStorage.setItem('hcq-admin-owner', owner);
-    localStorage.setItem('hcq-admin-repo', repo);
-    var btn = byId('loginForm').querySelector('button'); btn.disabled = true; btn.textContent = 'Connexion…';
-    loadContent().then(function () {
+    if (!token || !owner || !repo) {
+      showLogin('Renseignez la clé GitHub, le propriétaire et le nom du dépôt.');
+      return;
+    }
+    state.token = token; state.owner = owner; state.repo = repo; state.demo = false;
+    var btn = byId('loginForm').querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Connexion…';
+    connectAndShow().then(function () {
       btn.disabled = false; btn.textContent = 'Se connecter';
-      showApp();
     }).catch(function (err) {
       btn.disabled = false; btn.textContent = 'Se connecter';
       localStorage.removeItem('hcq-admin-token');
-      showLogin('Connexion impossible : ' + err.message + ' — vérifiez la clé, le propriétaire et le nom du dépôt.');
+      showLogin(friendlyError(err));
     });
   });
 
+  // Mode démo : entre sans GitHub (chargé depuis le site lui-même).
+  var demoBtn = byId('demoBtn');
+  if (demoBtn) {
+    demoBtn.addEventListener('click', function () {
+      demoBtn.disabled = true; demoBtn.textContent = 'Ouverture…';
+      fetch('data/content.json', { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('Fichier data/content.json introuvable dans ce site.');
+        return r.json();
+      }).then(function (data) {
+        state.content = data;
+        state.demo = true;
+        state.token = '';
+        state.owner = '';
+        state.repo = 'mode démo';
+        showApp();
+      }).catch(function (err) {
+        demoBtn.disabled = false; demoBtn.textContent = 'Mode démo (sans GitHub)';
+        showLogin(friendlyError(err));
+      });
+    });
+  }
+
   byId('logoutBtn').addEventListener('click', function () {
     localStorage.removeItem('hcq-admin-token');
+    localStorage.removeItem('hcq-admin-owner');
+    localStorage.removeItem('hcq-admin-repo');
+    localStorage.removeItem('hcq-demo-content');
     location.reload();
   });
 
   if (state.token && state.owner) {
-    loadContent().then(showApp).catch(function () { showLogin('Connexion impossible : vérifiez votre clé GitHub.'); });
+    connectAndShow().catch(function (err) {
+      localStorage.removeItem('hcq-admin-token');
+      showLogin(friendlyError(err));
+    });
   } else {
     showLogin();
   }

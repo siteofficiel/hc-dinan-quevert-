@@ -67,6 +67,11 @@ Le site est **100 % statique** : il n'y a **rien à installer**. Tout se passe s
 
 ## D. En cas de souci
 
-- **« Connexion impossible »** : vérifiez que la clé est bien copiée, que le droit **Contents : Read and write** est coché, et que le nom du propriétaire / du dépôt est exact.
+- L'administration affiche désormais un **message précis** en cas de problème : « clé invalide ou expirée », « dépôt introuvable », « permission manquante », etc.
+- **« Clé invalide ou expirée »** : la clé a été révoquée ou expirée — recréez-en une (section A.5).
+- **« Dépôt introuvable »** : vérifiez l'orthographe exacte du propriétaire et du nom du dépôt.
+- **« Permission manquante »** : le droit **Contents : Read and write** n'est pas coché sur la clé.
+- **Pour essayer sans rien configurer** : cliquez sur **« Mode démo (sans GitHub) »** sur l'écran de connexion.
+- Si le fichier `data/content.json` manque dans le dépôt, il est **créé automatiquement** à la première connexion.
 - **Le site ne s'affiche pas** : vérifiez Settings → Pages (source = branche `main`, dossier root).
 - **Une image ne s'affiche pas** : vérifiez qu'elle a bien été envoyée depuis l'administration (section Photos).

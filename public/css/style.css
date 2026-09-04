@@ -805,6 +805,8 @@ body.admin .demo-bar { display: none; }
 .login__form { display: flex; flex-direction: column; gap: 16px; }
 .login__back { display: block; text-align: center; margin-top: 20px; color: var(--muted); }
 .login__back:hover { color: var(--blue-600); }
+.login__sep { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: var(--muted); font-size: .86rem; }
+.login__sep::before, .login__sep::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
 .admin-shell { min-height: 100vh; }
 .admin-topbar {

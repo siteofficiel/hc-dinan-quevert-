@@ -19,8 +19,10 @@ Le guide pas-à-pas complet (avec création du compte et de la clé) est dans **
 ## Administration
 
 - URL : `admin.html` (bouton « Espace administrateur » en bas de chaque page).
-- Connexion avec la **clé GitHub (token)**, le propriétaire et le nom du dépôt.
+- Connexion avec la **clé GitHub (token)**, le propriétaire et le nom du dépôt. La clé est **mémorisée sur l'appareil** (reconnexion automatique ; « Déconnexion » l'efface).
 - Chaque enregistrement (actualité, résultat, photo, composition…) est **immédiatement publié** dans le dépôt GitHub. Le site se met à jour en **≈ 1 minute** (temps de redéploiement de GitHub Pages).
+- **Mode démo (sans GitHub)** : un bouton sur l'écran de connexion ouvre l'administration sans clé, pour l'essayer. Les modifications y sont téléchargées sous forme de fichier `content.json` (à déposer dans le dépôt), pas publiées automatiquement.
+- Les erreurs de connexion sont explicites : « clé invalide ou expirée », « dépôt introuvable », « permission manquante », etc. Si le fichier `data/content.json` manque dans le dépôt, il est **créé automatiquement** à la première connexion.
 
 Sections de l'administration : **Tableau de bord · Actualités · Résultats & matchs · Photos · Compositions · Équipes · Classement N3 · Réglages**.
 
